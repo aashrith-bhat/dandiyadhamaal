@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dandiya Dhamaal — One Night of Garba, Ras & Dhol | 11 October</title>
-<meta name="description" content="Dandiya Dhamaal — the biggest dandiya night of the year. Live dhol, garba, ras championships, food bazaar & DJ afterparty. Sunday, 11 October." />
+<meta name="description" content="Dandiya Dhamaal — the biggest dandiya night of the year. Live dhol, garba, ras championships, food bazaar & South Indian dinner. Sunday, 11 October." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -473,7 +473,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <h2>Where tradition meets <span class="grad-text">full volume</span></h2>
       </div>
       <p class="reveal" style="--d:.1s">Dandiya Dhamaal is not just an event — it is a sea of swirling chaniya cholis, mirrored kedis and dandiyas clashing in perfect rhythm. From first-timers to Garba champions, everyone becomes part of one giant circle under the October sky.</p>
-      <p class="reveal" style="--d:.2s">A sprawling open ground, a powerhouse live dhol ensemble, folk artists from Rajasthan and Gujarat, a festive bazaar of food and finery, and a DJ who refuses to let the floor cool down.</p>
+      <p class="reveal" style="--d:.2s">A sprawling open ground, a powerhouse live dhol ensemble, folk artists from Rajasthan and Gujarat, a festive bazaar of food and finery, and a hot dinner spread of South Indian dishes and snacks to send everyone home smiling.</p>
       <div class="stats">
         <div class="stat reveal" style="--d:.1s"><b data-count="3000">0</b><span>Dancers</span></div>
         <div class="stat reveal" style="--d:.2s"><b data-count="6">0</b><span>Hours of Dhol</span></div>
@@ -610,7 +610,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     <div class="f-grid">
       <div>
         <a href="#home" class="logo"><span class="logo-mark">D</span><span>Dandiya <b>Dhamaal</b></span></a>
-        <p>The biggest dandiya night of the season. Live dhol, garba, raas championships, festive bazaar and an afterparty that refuses to end.</p>
+        <p>The biggest dandiya night of the season. Live dhol, garba, raas championships, festive bazaar and a South Indian dinner to finish the night right.</p>
       </div>
       <div class="f-col">
         <h4>Explore</h4>
@@ -671,7 +671,7 @@ burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.cl
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navLinks.classList.remove('open');}));
 
 const marquee = document.getElementById('marquee');
-const words = ['Dandiya Dhamaal','11 October','Garba','Live Dhol','Raas Championship','Festive Bazaar','DJ Afterparty'];
+const words = ['Dandiya Dhamaal','11 October','Garba','Live Dhol','Raas Championship','Festive Bazaar','South Indian Dinner'];
 const seq = words.map(w=>`<span>${w} <i>✦</i></span>`).join('');
 marquee.innerHTML = seq + seq;
 
@@ -681,7 +681,7 @@ const highlights = [
   {t:'Dandiya Raas Championship',d:'Squad battles, knockout rounds and a crowned champion pair under the lights.',tag:'Compete',icon:'<path d="M4 20L20 4M4 4l16 16"/><circle cx="12" cy="12" r="3.5"/>'},
   {t:'Festive Bazaar & Food',d:'Handpicked stalls — bandhani dupattas, oxidised jhumkas, chaat, jalebi and thandai.',tag:'Shop & Eat',icon:'<path d="M4 10l8-6 8 6"/><path d="M5 10v9h14v-9"/><path d="M9 19v-5h6v5"/>'},
   {t:'Best Dressed Ramp Walk',d:'Twirl the ramp in your festive best. Mirror-work gets extra love from the judges.',tag:'Win Big',icon:'<path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4L7.5 16.8l.9-5L4.8 8.3l5-.7z"/>'},
-  {t:'DJ Dhamaal Afterparty',d:'Folk classics remixed with bass. The last hour belongs to the ones who never sit.',tag:'Till Late',icon:'<rect x="7" y="3" width="10" height="18" rx="4"/><circle cx="12" cy="15" r="3"/><path d="M12 6.5h.01"/>'}
+  {t:'South Indian Dinner',d:'A hot spread of South Indian dishes and snacks — the tastiest way to wind down after all that twirling.',tag:'Dinner',icon:'<path d="M4 11h16"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5"/><path d="M13.3 7.5c0-1.2 1.2-1.3 1.2-2.5"/>'}
 ];
 document.getElementById('hlGrid').innerHTML = highlights.map((h,i)=>`
   <div class="hl-card tilt reveal" style="--d:${(i%3)*.12}s">
@@ -696,7 +696,7 @@ const schedule = [
   ['7:30 PM','Live Dhol & Folk Night','Rajasthani and Gujarati folk artists take the main stage. The ground starts to shake.'],
   ['9:00 PM','Raas Dandiya Championship','Squad battles with clang-perfect formations. Champions take home the Dhamaal Crown.'],
   ['10:15 PM','Best Dressed Ramp Walk','Twirl, pose, win. Categories for best ghagra, best kediyu and best duo twirl.'],
-  ['11:00 PM','DJ Afterparty','Folk remixes till the lights demand a close. The floor decides when it ends.']
+  ['11:00 PM','Dinner','A spread of South Indian dishes and snacks to end the night on a full stomach.']
 ];
 document.getElementById('timeline').innerHTML = schedule.map((s,i)=>`
   <div class="tl-item reveal" style="--d:${i*.08}s">
