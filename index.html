@@ -539,6 +539,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Food &amp; bazaar stalls</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>South Indian dinner included</li>
         </ul>
         <!-- WHEN RAS REGULAR GOES LIVE: remove the "soon" class above, uncomment the link, paste the Cashfree Payment Link URL
         <a class="btn btn-ghost" href="CASHFREE_PAYMENT_LINK_RAS_REGULAR" target="_blank" rel="noopener noreferrer" data-ticket="Ras Regular">Pay Now</a>
@@ -557,6 +558,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Reserved circle front zone</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Ramp walk entry included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>South Indian dinner included</li>
         </ul>
         <!-- REPLACE_WITH_CASHFREE_LINK_FLASH_SALE : paste your Cashfree Payment Link URL (₹239) into the href below -->
         <a class="btn btn-grad" href="CASHFREE_PAYMENT_LINK_FLASH_SALE" target="_blank" rel="noopener noreferrer" data-ticket="Flash Sale">Pay Now</a>
@@ -572,6 +574,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Unlimited food &amp; thandai counter</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Valet parking &amp; private gate</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>South Indian dinner included</li>
         </ul>
         <!-- WHEN VIP GOES LIVE: remove the "soon" class above, uncomment the link, paste the Cashfree Payment Link URL
         <a class="btn btn-ghost" href="CASHFREE_PAYMENT_LINK_VIP_DHOL_BOX" target="_blank" rel="noopener noreferrer" data-ticket="VIP Dhol Box">Pay Now</a>
@@ -681,7 +684,7 @@ const highlights = [
   {t:'Dandiya Raas Championship',d:'Squad battles, knockout rounds and a crowned champion pair under the lights.',tag:'Compete',icon:'<path d="M4 20L20 4M4 4l16 16"/><circle cx="12" cy="12" r="3.5"/>'},
   {t:'Festive Bazaar & Food',d:'Handpicked stalls — bandhani dupattas, oxidised jhumkas, chaat, jalebi and thandai.',tag:'Shop & Eat',icon:'<path d="M4 10l8-6 8 6"/><path d="M5 10v9h14v-9"/><path d="M9 19v-5h6v5"/>'},
   {t:'Best Dressed Ramp Walk',d:'Twirl the ramp in your festive best. Mirror-work gets extra love from the judges.',tag:'Win Big',icon:'<path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4L7.5 16.8l.9-5L4.8 8.3l5-.7z"/>'},
-  {t:'South Indian Dinner',d:'A hot spread of South Indian dishes and snacks — the tastiest way to wind down after all that twirling.',tag:'Dinner',icon:'<path d="M4 11h16"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5"/><path d="M13.3 7.5c0-1.2 1.2-1.3 1.2-2.5"/>'}
+  {t:'South Indian Dinner',d:'A hot spread of South Indian dishes and snacks — included with every pass, no coupons needed.',tag:'Dinner',icon:'<path d="M4 11h16"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5"/><path d="M13.3 7.5c0-1.2 1.2-1.3 1.2-2.5"/>'}
 ];
 document.getElementById('hlGrid').innerHTML = highlights.map((h,i)=>`
   <div class="hl-card tilt reveal" style="--d:${(i%3)*.12}s">
@@ -695,8 +698,8 @@ const schedule = [
   ['6:00 PM','Garba Workshop','Learn the taali, chherk and dodhiyu from pros. Beginners circle right at the front.'],
   ['7:30 PM','Live Dhol & Folk Night','Rajasthani and Gujarati folk artists take the main stage. The ground starts to shake.'],
   ['9:00 PM','Raas Dandiya Championship','Squad battles with clang-perfect formations. Champions take home the Dhamaal Crown.'],
-  ['10:15 PM','Best Dressed Ramp Walk','Twirl, pose, win. Categories for best ghagra, best kediyu and best duo twirl.'],
-  ['11:00 PM','Dinner','A spread of South Indian dishes and snacks to end the night on a full stomach.']
+  ['9:45 PM','Dinner','A hot spread of South Indian dishes and snacks — included with every pass.'],
+  ['10:45 PM','Best Dressed Ramp Walk','Twirl, pose, win. Categories for best ghagra, best kediyu and best duo twirl.']
 ];
 document.getElementById('timeline').innerHTML = schedule.map((s,i)=>`
   <div class="tl-item reveal" style="--d:${i*.08}s">
