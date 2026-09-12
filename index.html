@@ -540,8 +540,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Food &amp; bazaar stalls</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
         </ul>
-        <!-- WHEN RAS REGULAR GOES LIVE: remove the "soon" class above, uncomment the link, paste the Razorpay Payment Link URL
-        <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_RAS_REGULAR" target="_blank" rel="noopener noreferrer" data-ticket="Ras Regular">Pay Now</a>
+        <!-- WHEN RAS REGULAR GOES LIVE: remove the "soon" class above, uncomment the link, paste the Cashfree Payment Link URL
+        <a class="btn btn-ghost" href="CASHFREE_PAYMENT_LINK_RAS_REGULAR" target="_blank" rel="noopener noreferrer" data-ticket="Ras Regular">Pay Now</a>
         -->
         <div class="tk-soon"><span>Coming Soon</span></div>
       </div>
@@ -558,8 +558,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Ramp walk entry included</li>
         </ul>
-        <!-- REPLACE_WITH_RAZORPAY_LINK_FLASH_SALE : paste your Razorpay Payment Link URL (₹239) into the href below -->
-        <a class="btn btn-grad" href="RAZORPAY_PAYMENT_LINK_FLASH_SALE" target="_blank" rel="noopener noreferrer" data-ticket="Flash Sale">Pay Now</a>
+        <!-- REPLACE_WITH_CASHFREE_LINK_FLASH_SALE : paste your Cashfree Payment Link URL (₹239) into the href below -->
+        <a class="btn btn-grad" href="CASHFREE_PAYMENT_LINK_FLASH_SALE" target="_blank" rel="noopener noreferrer" data-ticket="Flash Sale">Pay Now</a>
       </div>
 
       <div class="tk-card soon tilt reveal" style="--d:.24s">
@@ -573,14 +573,14 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Valet parking &amp; private gate</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
         </ul>
-        <!-- WHEN VIP GOES LIVE: remove the "soon" class above, uncomment the link, paste the Razorpay Payment Link URL
-        <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_VIP_DHOL_BOX" target="_blank" rel="noopener noreferrer" data-ticket="VIP Dhol Box">Pay Now</a>
+        <!-- WHEN VIP GOES LIVE: remove the "soon" class above, uncomment the link, paste the Cashfree Payment Link URL
+        <a class="btn btn-ghost" href="CASHFREE_PAYMENT_LINK_VIP_DHOL_BOX" target="_blank" rel="noopener noreferrer" data-ticket="VIP Dhol Box">Pay Now</a>
         -->
         <div class="tk-soon"><span>Coming Soon</span></div>
       </div>
     </div>
 
-    <p class="tk-privacy reveal" style="--d:.15s">Your name, email and phone number are collected only by our payment partner (Razorpay) to issue your entry pass — they are never sold or shared for any other purpose. This site itself stores nothing and tracks nobody.</p>
+    <p class="tk-privacy reveal" style="--d:.15s">Your name, email and phone number are collected only by our payment partner (Cashfree) to issue your entry pass — they are never sold or shared for any other purpose. This site itself stores nothing and tracks nobody.</p>
   </div>
 </section>
 
@@ -854,7 +854,7 @@ document.addEventListener('click',e=>{
   if(!btn)return;
   const r = btn.getBoundingClientRect();
   burst(r.left + r.width/2, r.top + r.height/2);
-  toast(`<b>${btn.dataset.ticket}</b> — opening Razorpay secure checkout…`);
+  toast(`<b>${btn.dataset.ticket}</b> — opening secure checkout…`);
 });
 
 document.querySelectorAll('.tilt').forEach(card=>{
