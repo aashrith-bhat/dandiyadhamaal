@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dandya Dhamala — One Night of Garba, Ras & Dhol | 11 October</title>
+<meta name="description" content="Dandya Dhamala — the biggest dandiya night of the year. Live dhol, garba, ras championships, food bazaar & DJ afterparty. Sunday, 11 October." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --orange:#FF7A00;
+  --red:#E52B2B;
+  --cranberry:#C1124A;
+  --yellow:#FFC61A;
+  --cream:#FFF8EE;
+  --ink:#0B0605;
+  --ink2:#160B07;
+  --glass:rgba(255,248,238,.05);
+  --line:rgba(255,248,238,.12);
+  --grad:linear-gradient(92deg,var(--yellow),var(--orange) 35%,var(--red) 70%,var(--cranberry));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--ink);
+  color:var(--cream);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--orange);color:var(--ink)}
+section{position:relative;scroll-margin-top:90px}
+h1,h2,h3,.display{font-family:'Yatra One',system-ui,cursive;font-weight:400}
+
+.noise{
+  position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+  background:var(--grad);box-shadow:0 0 12px var(--orange);
+}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;
+  color:var(--yellow);
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--yellow)}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head h2{
+  font-size:clamp(34px,5vw,58px);line-height:1.08;margin:14px 0 16px;
+}
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.outline-text{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(255,248,238,.85);
+}
+
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:18px 0;transition:.35s;
+}
+header.scrolled{background:rgba(11,6,5,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 0}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream)}
+.logo-mark{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:var(--grad);color:var(--ink);
+  font-family:'Yatra One';font-size:19px;
+  box-shadow:0 4px 22px rgba(255,122,0,.45);
+  transform:rotate(-6deg);transition:.4s;
+}
+.logo:hover .logo-mark{transform:rotate(6deg) scale(1.06)}
+.logo span{font-family:'Yatra One';font-size:19px;letter-spacing:.02em}
+.logo b{color:var(--yellow)}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+.nav-links a{color:rgba(255,248,238,.75);text-decoration:none;font-weight:500;font-size:15px;position:relative;transition:.25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--grad);transition:.3s;border-radius:2px}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;
+  font-family:'Outfit';font-weight:700;font-size:15px;text-decoration:none;
+  padding:13px 26px;border-radius:999px;transition:.3s;position:relative;
+}
+.btn-grad{
+  background:var(--grad);color:var(--ink);
+  box-shadow:0 6px 26px rgba(229,43,43,.4);
+}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(255,122,0,.55)}
+.btn-ghost{
+  background:transparent;color:var(--cream);border:1px solid rgba(255,248,238,.3);
+}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px)}
+.btn-sm{padding:10px 20px;font-size:14px}
+
+.burger{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;position:relative;z-index:60}
+.burger span{display:block;width:24px;height:2px;background:var(--cream);margin:6px auto;transition:.3s;border-radius:2px}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 90px;overflow:hidden}
+#sparks{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.5;pointer-events:none;z-index:0}
+.orb-1{width:520px;height:520px;background:var(--cranberry);top:-140px;left:-120px;animation:drift 14s ease-in-out infinite alternate}
+.orb-2{width:460px;height:460px;background:var(--orange);bottom:-160px;right:-100px;animation:drift 18s ease-in-out infinite alternate-reverse}
+.orb-3{width:280px;height:280px;background:var(--yellow);top:36%;left:58%;opacity:.28;animation:drift 12s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,-50px) scale(1.15)}}
+
+.mandala{
+  position:absolute;top:50%;right:-240px;transform:translateY(-50%);
+  width:640px;height:640px;opacity:.14;z-index:0;pointer-events:none;
+  animation:spin 60s linear infinite;
+}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+
+.hero-inner{position:relative;z-index:2;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--glass);border:1px solid var(--line);
+  padding:9px 20px;border-radius:999px;font-size:13px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(8px);
+}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 0 rgba(255,198,26,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,198,26,0)}100%{box-shadow:0 0 0 0 rgba(255,198,26,0)}}
+
+.hero h1{font-size:clamp(52px,10vw,132px);line-height:.98;margin:26px 0 8px}
+.hero h1 .l1{display:block}
+.hero h1 .l2{display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 6px 30px rgba(229,43,43,.45))}
+.hero-sub{max-width:560px;margin:18px auto 0;font-size:18px;font-weight:300;color:rgba(255,248,238,.8);line-height:1.65}
+.hero-meta{
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:34px 0 42px;
+}
+.meta-chip{
+  display:inline-flex;align-items:center;gap:9px;padding:10px 18px;border-radius:999px;
+  background:var(--glass);border:1px solid var(--line);font-size:14px;font-weight:600;
+  backdrop-filter:blur(8px);
+}
+.meta-chip svg{width:16px;height:16px;stroke:var(--yellow)}
+.hero-cta{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+.dandiyas{width:min(340px,70vw);margin:52px auto 0;display:block;animation:sway 5s ease-in-out infinite;transform-origin:center}
+@keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+
+.countdown{display:flex;justify-content:center;gap:clamp(10px,2.4vw,22px);margin-top:56px;flex-wrap:wrap}
+.cd-box{
+  min-width:96px;padding:20px 12px 16px;text-align:center;border-radius:18px;
+  background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;transition:.3s;
+}
+.cd-box:hover{transform:translateY(-4px);border-color:rgba(255,198,26,.5)}
+.cd-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.cd-num{font-family:'Yatra One';font-size:clamp(34px,5vw,52px);line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cd-lab{font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.55);margin-top:8px}
+
+.marquee{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:20px 0;overflow:hidden;position:relative;z-index:2;
+  background:linear-gradient(90deg,rgba(255,122,0,.08),rgba(193,18,74,.1),rgba(255,198,26,.08));
+}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll-x 26s linear infinite;white-space:nowrap}
+.marquee-track span{font-family:'Yatra One';font-size:clamp(18px,2.6vw,28px);display:flex;align-items:center;gap:48px;color:rgba(255,248,238,.9)}
+.marquee-track i{font-style:normal;color:var(--orange)}
+@keyframes scroll-x{to{transform:translateX(-50%)}}
+
+.about{padding:120px 0}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.about p{color:rgba(255,248,238,.75);font-size:17px;line-height:1.8;font-weight:300;margin-bottom:18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.stat{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:24px 18px;text-align:center;transition:.3s}
+.stat:hover{transform:translateY(-5px);border-color:rgba(255,122,0,.5);box-shadow:0 14px 40px rgba(255,122,0,.15)}
+.stat b{font-family:'Yatra One';font-size:34px;display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,248,238,.6);font-weight:600}
+.about-visual{position:relative}
+.about-card{
+  position:relative;border-radius:26px;overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(120% 90% at 20% 10%,rgba(255,122,0,.5),transparent 55%),
+    radial-gradient(110% 100% at 90% 90%,rgba(193,18,74,.55),transparent 55%),
+    radial-gradient(90% 90% at 60% 40%,rgba(255,198,26,.3),transparent 60%),
+    var(--ink2);
+  padding:46px 40px;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.about-card .big{font-family:'Yatra One';font-size:clamp(30px,3.4vw,44px);line-height:1.2}
+.about-card p{font-size:15px;margin-top:12px}
+.diya-row{position:absolute;top:26px;left:40px;right:40px;display:flex;justify-content:space-between}
+.diya{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 50% 60%,var(--yellow),var(--orange) 55%,transparent 70%);filter:blur(1px);animation:flick 1.6s ease-in-out infinite}
+.diya:nth-child(2){animation-delay:.4s}.diya:nth-child(3){animation-delay:.8s}.diya:nth-child(4){animation-delay:1.2s}.diya:nth-child(5){animation-delay:.6s}
+@keyframes flick{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+
+.highlights{padding:110px 0}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.hl-card{
+  background:var(--glass);border:1px solid var(--line);border-radius:22px;
+  padding:34px 28px;position:relative;overflow:hidden;transition:.35s;
+}
+.hl-card::after{
+  content:"";position:absolute;inset:0;opacity:0;transition:.4s;
+  background:radial-gradient(90% 90% at 50% -10%,rgba(255,122,0,.22),transparent 60%);
+}
+.hl-card:hover{transform:translateY(-8px);border-color:rgba(255,122,0,.45);box-shadow:0 22px 60px rgba(229,43,43,.18)}
+.hl-card:hover::after{opacity:1}
+.hl-icon{
+  width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;
+  background:var(--grad);box-shadow:0 8px 24px rgba(255,122,0,.35);
+}
+.hl-icon svg{width:26px;height:26px;stroke:var(--ink)}
+.hl-card h3{font-size:22px;margin-bottom:10px}
+.hl-card p{color:rgba(255,248,238,.65);font-size:14.5px;line-height:1.7;font-weight:300}
+.hl-tag{
+  position:absolute;top:22px;right:22px;font-size:10.5px;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;padding:6px 12px;border-radius:999px;
+  border:1px solid rgba(255,198,26,.4);color:var(--yellow);
+}
+
+.floor-sec{padding:110px 0 60px}
+.floor-wrap{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);cursor:crosshair;background:
+  radial-gradient(80% 100% at 50% 0%,rgba(193,18,74,.22),transparent 60%),
+  repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,248,238,.025) 0deg 6deg,transparent 6deg 12deg),
+  var(--ink2)}
+#floor{display:block;width:100%;height:440px}
+.floor-hint{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);pointer-events:none;
+  font-size:13px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,248,238,.55);display:flex;align-items:center;gap:10px;
+}
+.floor-hint::before,.floor-hint::after{content:"";width:30px;height:1px;background:rgba(255,248,238,.3)}
+
+.schedule{padding:110px 0}
+.tl{position:relative;max-width:760px;margin:0 auto}
+.tl::before{content:"";position:absolute;left:26px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--yellow),var(--orange),var(--cranberry))}
+.tl-item{position:relative;padding:0 0 38px 80px}
+.tl-dot{
+  position:absolute;left:12px;top:2px;width:30px;height:30px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--orange);display:grid;place-items:center;
+  box-shadow:0 0 0 5px rgba(255,122,0,.15);
+}
+.tl-dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.tl-item:hover .tl-dot{box-shadow:0 0 0 8px rgba(255,198,26,.2);border-color:var(--yellow)}
+.tl-time{font-size:12.5px;font-weight:800;letter-spacing:.22em;color:var(--yellow);text-transform:uppercase}
+.tl-item h3{font-size:23px;margin:6px 0 6px}
+.tl-item p{color:rgba(255,248,238,.65);font-size:15px;font-weight:300;line-height:1.65;max-width:520px}
+
+.tickets{padding:110px 0}
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.tk-card{
+  background:var(--glass);border:1px solid var(--line);border-radius:26px;
+  padding:40px 32px;display:flex;flex-direction:column;position:relative;transition:.35s;
+}
+.tk-card:hover{transform:translateY(-8px)}
+.tk-card.hot{
+  background:linear-gradient(180deg,rgba(255,122,0,.14),rgba(193,18,74,.12)),var(--glass);
+  border-color:rgba(255,198,26,.5);
+  box-shadow:0 24px 70px rgba(229,43,43,.25);
+}
+.tk-flag{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--grad);color:var(--ink);font-size:11px;font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase;padding:8px 18px;border-radius:999px;
+  box-shadow:0 8px 24px rgba(255,122,0,.45);white-space:nowrap;
+}
+.tk-card h3{font-size:26px}
+.tk-price{font-family:'Yatra One';font-size:52px;margin:18px 0 4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tk-price small{font-size:16px;color:rgba(255,248,238,.55);-webkit-text-fill-color:rgba(255,248,238,.55)}
+.tk-note{font-size:12.5px;color:rgba(255,248,238,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:24px}
+.tk-feats{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:32px;flex:1}
+.tk-feats li{display:flex;gap:11px;font-size:14.5px;font-weight:300;color:rgba(255,248,238,.8);align-items:flex-start;line-height:1.5}
+.tk-feats svg{width:17px;height:17px;stroke:var(--yellow);flex-shrink:0;margin-top:2px}
+.tk-privacy{max-width:620px;margin:36px auto 0;text-align:center;font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(255,248,238,.55)}
+
+.faq{padding:40px 0 120px}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:var(--glass);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.3s}
+.faq-item.open{border-color:rgba(255,122,0,.5)}
+.faq-q{
+  width:100%;background:none;border:none;color:var(--cream);cursor:pointer;
+  font-family:'Outfit';font-size:16.5px;font-weight:600;text-align:left;
+  padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-q .pm{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,198,26,.5);display:grid;place-items:center;flex-shrink:0;transition:.35s;font-size:17px;color:var(--yellow);font-weight:400}
+.faq-item.open .pm{transform:rotate(45deg);background:var(--grad);color:var(--ink);border-color:transparent}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 26px 24px;color:rgba(255,248,238,.65);font-weight:300;line-height:1.7;font-size:15px}
+
+.cta-band{padding:0 0 120px}
+.cta-inner{
+  border-radius:32px;padding:clamp(48px,7vw,90px) 40px;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(90% 140% at 15% 0%,rgba(255,198,26,.28),transparent 55%),
+    radial-gradient(100% 130% at 85% 100%,rgba(193,18,74,.4),transparent 60%),
+    radial-gradient(80% 100% at 60% 20%,rgba(229,43,43,.25),transparent 55%),
+    var(--ink2);
+  border:1px solid rgba(255,198,26,.25);
+}
+.cta-inner h2{font-size:clamp(36px,5.6vw,64px);line-height:1.1;margin-bottom:16px}
+.cta-inner p{color:rgba(255,248,238,.75);font-weight:300;font-size:17px;max-width:520px;margin:0 auto 36px}
+
+footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-index:2}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:52px}
+.f-grid p{color:rgba(255,248,238,.55);font-weight:300;font-size:14.5px;line-height:1.75;margin-top:16px;max-width:300px}
+.f-col h4{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--yellow);margin-bottom:20px;font-weight:700}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.f-col a{color:rgba(255,248,238,.65);text-decoration:none;font-size:14.5px;font-weight:300;transition:.25s}
+.f-col a:hover{color:var(--yellow);padding-left:5px}
+.f-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.f-bottom small{color:rgba(255,248,238,.4);font-size:13px;font-weight:300}
+.socials{display:flex;gap:12px}
+.socials a{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--line);
+  display:grid;place-items:center;transition:.3s;
+}
+.socials a:hover{border-color:var(--orange);background:rgba(255,122,0,.12);transform:translateY(-3px)}
+.socials svg{width:17px;height:17px;stroke:rgba(255,248,238,.75)}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+#toasts{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:10px;align-items:center}
+.toast{
+  background:rgba(22,11,7,.92);border:1px solid rgba(255,198,26,.5);color:var(--cream);
+  padding:14px 26px;border-radius:999px;font-size:14.5px;font-weight:600;
+  backdrop-filter:blur(10px);box-shadow:0 14px 44px rgba(0,0,0,.5);
+  animation:toast-in .4s ease;white-space:nowrap;
+}
+.toast b{color:var(--yellow)}
+@keyframes toast-in{from{opacity:0;transform:translateY(18px) scale(.92)}to{opacity:1;transform:none}}
+
+@media(max-width:960px){
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .hl-grid,.tk-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+  .mandala{display:none}
+}
+@media(max-width:760px){
+  .burger{display:block}
+  .nav-links{
+    position:fixed;inset:0;background:rgba(11,6,5,.97);backdrop-filter:blur(18px);
+    flex-direction:column;justify-content:center;gap:34px;
+    clip-path:circle(0 at calc(100% - 44px) 42px);transition:clip-path .5s ease;z-index:55;
+  }
+  .nav-links.open{clip-path:circle(150% at calc(100% - 44px) 42px)}
+  .nav-links a{font-size:22px;font-family:'Yatra One'}
+  .f-grid{grid-template-columns:1fr;gap:36px}
+  .cd-box{min-width:76px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+</head>
+<body>
+
+<div class="noise"></div>
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#home" class="logo">
+      <span class="logo-mark">D</span>
+      <span>Dandya <b>Dhamala</b></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#highlights">Highlights</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#tickets" class="btn btn-grad btn-sm">Get Passes</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <svg class="mandala" viewBox="0 0 200 200" fill="none" stroke="#FFC61A" stroke-width=".5">
+    <circle cx="100" cy="100" r="98"/><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="62"/><circle cx="100" cy="100" r="44"/>
+    <g id="petals"></g>
+  </svg>
+  <canvas id="sparks"></canvas>
+
+  <div class="wrap hero-inner">
+    <div class="hero-badge reveal in"><span class="pulse-dot"></span> Shubh Navratri Special</div>
+    <h1>
+      <span class="l1 outline-text">Dandya</span>
+      <span class="l2">Dhamala</span>
+    </h1>
+    <p class="hero-sub">One electrifying night of Garba, Raas and thundering dhol. Grab your dandiyas, wear your brightest ghagra-choli, and dance till the stars spin with you.</p>
+
+    <div class="hero-meta">
+      <span class="meta-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        Sunday, 11 October 2026
+      </span>
+      <span class="meta-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        5:00 PM onwards
+      </span>
+      <span class="meta-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Grand Meadows Grounds
+      </span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#tickets" class="btn btn-grad">Book Your Passes</a>
+      <a href="#about" class="btn btn-ghost">Discover the Night</a>
+    </div>
+
+    <svg class="dandiyas" viewBox="0 0 340 200" fill="none">
+      <g stroke-linecap="round">
+        <g transform="rotate(24 170 100)">
+          <rect x="30" y="88" width="280" height="24" rx="12" fill="#B0123B"/>
+          <rect x="30" y="88" width="280" height="24" rx="12" fill="url(#stick1)" opacity=".35"/>
+          <rect x="118" y="88" width="20" height="24" fill="#FFC61A"/>
+          <rect x="196" y="88" width="20" height="24" fill="#FFC61A"/>
+          <rect x="30" y="88" width="34" height="24" rx="12" fill="#FF7A00"/>
+          <rect x="276" y="88" width="34" height="24" rx="12" fill="#FF7A00"/>
+        </g>
+        <g transform="rotate(-24 170 100)">
+          <rect x="30" y="88" width="280" height="24" rx="12" fill="#FF7A00"/>
+          <rect x="118" y="88" width="20" height="24" fill="#FFF8EE"/>
+          <rect x="196" y="88" width="20" height="24" fill="#FFF8EE"/>
+          <rect x="30" y="88" width="34" height="24" rx="12" fill="#E52B2B"/>
+          <rect x="276" y="88" width="34" height="24" rx="12" fill="#E52B2B"/>
+        </g>
+      </g>
+      <defs>
+        <linearGradient id="stick1" x1="30" y1="0" x2="310" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFC61A"/><stop offset="1" stop-color="#E52B2B"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="countdown" id="countdown" aria-label="Countdown to event">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">Hours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lab">Minutes</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lab">Seconds</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:0">
+        <span class="eyebrow">The Celebration</span>
+        <h2>Where tradition meets <span class="grad-text">full volume</span></h2>
+      </div>
+      <p class="reveal" style="--d:.1s">Dandya Dhamala is not just an event — it is a sea of swirling chaniya cholis, mirrored kedis and dandiyas clashing in perfect rhythm. From first-timers to Garba champions, everyone becomes part of one giant circle under the October sky.</p>
+      <p class="reveal" style="--d:.2s">A sprawling open ground, a powerhouse live dhol ensemble, folk artists from Rajasthan and Gujarat, a festive bazaar of food and finery, and a DJ who refuses to let the floor cool down.</p>
+      <div class="stats">
+        <div class="stat reveal" style="--d:.1s"><b data-count="3000">0</b><span>Dancers</span></div>
+        <div class="stat reveal" style="--d:.2s"><b data-count="6">0</b><span>Hours of Dhol</span></div>
+        <div class="stat reveal" style="--d:.3s"><b data-count="40">0</b><span>Prizes</span></div>
+      </div>
+    </div>
+    <div class="about-visual reveal" style="--d:.15s">
+      <div class="about-card tilt">
+        <div class="diya-row"><span class="diya"></span><span class="diya"></span><span class="diya"></span><span class="diya"></span><span class="diya"></span></div>
+        <div class="big">"The floor doesn't sleep. <span class="grad-text">It simply spins."</span></div>
+        <p>Bring your squad, your dandiyas and your best twirl. We will bring the beats, the lights and the dhamala.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="highlights" id="highlights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Highlights</span>
+      <h2>Six reasons the <span class="grad-text">ground shakes</span></h2>
+    </div>
+    <div class="hl-grid" id="hlGrid"></div>
+  </div>
+</section>
+
+<section class="floor-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Warm-up</span>
+      <h2>Try the floor <span class="grad-text">right here</span></h2>
+    </div>
+    <div class="floor-wrap reveal" style="--d:.1s">
+      <canvas id="floor"></canvas>
+      <div class="floor-hint">Move &amp; click to spark the floor</div>
+    </div>
+  </div>
+</section>
+
+<section class="schedule" id="schedule">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">The Flow</span>
+      <h2>One night, <span class="grad-text">hour by hour</span></h2>
+    </div>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+<section class="tickets" id="tickets">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Passes</span>
+      <h2>Pick your <span class="grad-text">dhamala level</span></h2>
+    </div>
+    <div class="tk-grid" id="tkGrid">
+      <div class="tk-card tilt reveal" style="--d:0s">
+        <h3>Ras Regular</h3>
+        <div class="tk-price"><small>₹</small> 499<small> /person</small></div>
+        <div class="tk-note">Early bird · limited</div>
+        <ul class="tk-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Food &amp; bazaar stalls</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
+        </ul>
+        <!-- REPLACE_WITH_RAZORPAY_LINK_RAS_REGULAR : paste your Razorpay Payment Link URL into the href below -->
+        <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_RAS_REGULAR" target="_blank" rel="noopener noreferrer" data-ticket="Ras Regular">Pay Now</a>
+      </div>
+
+      <div class="tk-card hot tilt reveal" style="--d:.12s">
+        <span class="tk-flag">Most Popular</span>
+        <h3>Dhamala Pass</h3>
+        <div class="tk-price"><small>₹</small> 999<small> /person</small></div>
+        <div class="tk-note">Most loved</div>
+        <ul class="tk-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Regular</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Reserved circle front zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Ramp walk entry included</li>
+        </ul>
+        <!-- REPLACE_WITH_RAZORPAY_LINK_DHAMALA_PASS : paste your Razorpay Payment Link URL into the href below -->
+        <a class="btn btn-grad" href="RAZORPAY_PAYMENT_LINK_DHAMALA_PASS" target="_blank" rel="noopener noreferrer" data-ticket="Dhamala Pass">Pay Now</a>
+      </div>
+
+      <div class="tk-card tilt reveal" style="--d:.24s">
+        <h3>VIP Dhol Box</h3>
+        <div class="tk-price"><small>₹</small> 1999<small> /person</small></div>
+        <div class="tk-note">Premium · few left</div>
+        <ul class="tk-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Dhamala</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Front-stage VIP deck seating</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Unlimited food &amp; thandai counter</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Valet parking &amp; private gate</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
+        </ul>
+        <!-- REPLACE_WITH_RAZORPAY_LINK_VIP_DHOL_BOX : paste your Razorpay Payment Link URL into the href below -->
+        <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_VIP_DHOL_BOX" target="_blank" rel="noopener noreferrer" data-ticket="VIP Dhol Box">Pay Now</a>
+      </div>
+    </div>
+
+    <p class="tk-privacy reveal" style="--d:.15s">Your name, email and phone number are collected only by our payment partner (Razorpay) to issue your entry pass — they are never sold or shared for any other purpose. This site itself stores nothing and tracks nobody.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Good to Know</span>
+      <h2>Quick <span class="grad-text">answers</span></h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner reveal">
+      <span class="eyebrow" style="justify-content:center">11 October 2026</span>
+      <h2 style="margin-top:14px">The circle is waiting. <br/><span class="grad-text">Are you in?</span></h2>
+      <p>Early-bird passes are limited and vanishing faster than jalebis at a wedding. Lock yours before the dhol starts.</p>
+      <a class="btn btn-grad" href="#tickets" style="font-size:17px;padding:17px 40px">Reserve My Spot</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#home" class="logo"><span class="logo-mark">D</span><span>Dandya <b>Dhamala</b></span></a>
+        <p>The biggest dandiya night of the season. Live dhol, garba, raas championships, festive bazaar and an afterparty that refuses to end.</p>
+      </div>
+      <div class="f-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About the Night</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#tickets">Passes</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@dandyadhamala.com">hello@dandyadhamala.com</a></li>
+          <li><a href="tel:+919800000000">+91 98000 00000</a></li>
+          <li><a href="#tickets">Group bookings (10+)</a></li>
+          <li><a href="#tickets">Sponsor enquiries</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <small>© 2026 Dandya Dhamala. Made with beats &amp; dandiyas.</small>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 3h-2.5A3.5 3.5 0 0 0 8 6.5V10H5.5v3.5H8V21h4v-7.5h2.8l.7-3.5H12V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<canvas id="confetti"></canvas>
+<div id="toasts"></div>
+
+<script>
+const COLORS = ['#FF7A00','#E52B2B','#C1124A','#FFC61A','#FFF8EE'];
+const rand = (a,b)=>Math.random()*(b-a)+a;
+const pick = arr => arr[Math.random()*arr.length|0];
+
+const mandala = document.getElementById('petals');
+let petals = '';
+for(let i=0;i<12;i++){
+  petals += `<path transform="rotate(${i*30} 100 100)" d="M100 4 C112 26 112 40 100 56 C88 40 88 26 100 4 Z"/>`;
+}
+mandala.innerHTML = petals;
+
+const header = document.getElementById('header');
+const progress = document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('scrolled',scrollY>40);
+  const h = document.documentElement;
+  progress.style.width = (scrollY/(h.scrollHeight-h.clientHeight)*100)+'%';
+},{passive:true});
+
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.classList.toggle('open');});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navLinks.classList.remove('open');}));
+
+const marquee = document.getElementById('marquee');
+const words = ['Dandya Dhamala','11 October','Garba','Live Dhol','Raas Championship','Festive Bazaar','DJ Afterparty'];
+const seq = words.map(w=>`<span>${w} <i>✦</i></span>`).join('');
+marquee.innerHTML = seq + seq;
+
+const highlights = [
+  {t:'Live Dhol Tasha Ensemble',d:'A powerhouse dhol squad driving every beat from hello to encore. Feel it in your ribs.',tag:'Main Stage',icon:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'},
+  {t:'Garba & Raas Workshops',d:'New to the circle? Pros teach the steps at golden hour so you own the floor by night.',tag:'All Levels',icon:'<circle cx="12" cy="5" r="2.5"/><path d="M12 8v6M12 14l-4 6M12 14l4 6M5 10h14"/>'},
+  {t:'Dandiya Raas Championship',d:'Squad battles, knockout rounds and a crowned champion pair under the lights.',tag:'Compete',icon:'<path d="M4 20L20 4M4 4l16 16"/><circle cx="12" cy="12" r="3.5"/>'},
+  {t:'Festive Bazaar & Food',d:'Handpicked stalls — bandhani dupattas, oxidised jhumkas, chaat, jalebi and thandai.',tag:'Shop & Eat',icon:'<path d="M4 10l8-6 8 6"/><path d="M5 10v9h14v-9"/><path d="M9 19v-5h6v5"/>'},
+  {t:'Best Dressed Ramp Walk',d:'Twirl the ramp in your festive best. Mirror-work gets extra love from the judges.',tag:'Win Big',icon:'<path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4L7.5 16.8l.9-5L4.8 8.3l5-.7z"/>'},
+  {t:'DJ Dhamala Afterparty',d:'Folk classics remixed with bass. The last hour belongs to the ones who never sit.',tag:'Till Late',icon:'<rect x="7" y="3" width="10" height="18" rx="4"/><circle cx="12" cy="15" r="3"/><path d="M12 6.5h.01"/>'}
+];
+document.getElementById('hlGrid').innerHTML = highlights.map((h,i)=>`
+  <div class="hl-card tilt reveal" style="--d:${(i%3)*.12}s">
+    ${h.tag?`<span class="hl-tag">${h.tag}</span>`:''}
+    <div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${h.icon}</svg></div>
+    <h3>${h.t}</h3><p>${h.d}</p>
+  </div>`).join('');
+
+const schedule = [
+  ['5:00 PM','Gates Open & Welcome','Mirror-work wristbands, welcome thandai and the first dhol roll as the sun dips.'],
+  ['6:00 PM','Garba Workshop','Learn the taali, chherk and dodhiyu from pros. Beginners circle right at the front.'],
+  ['7:30 PM','Live Dhol & Folk Night','Rajasthani and Gujarati folk artists take the main stage. The ground starts to shake.'],
+  ['9:00 PM','Raas Dandya Championship','Squad battles with clang-perfect formations. Champions take home the Dhamala Crown.'],
+  ['10:15 PM','Best Dressed Ramp Walk','Twirl, pose, win. Categories for best ghagra, best kediyu and best duo twirl.'],
+  ['11:00 PM','DJ Afterparty','Folk remixes till the lights demand a close. The floor decides when it ends.']
+];
+document.getElementById('timeline').innerHTML = schedule.map((s,i)=>`
+  <div class="tl-item reveal" style="--d:${i*.08}s">
+    <span class="tl-dot"></span>
+    <div class="tl-time">${s[0]}</div>
+    <h3>${s[1]}</h3><p>${s[2]}</p>
+  </div>`).join('');
+
+const faqs = [
+  ['Do I need to bring my own dandiyas?','You can, but every Dhamala and VIP pass includes a pair of decorated dandiyas at the welcome gate. Regular pass holders can buy them at the bazaar.'],
+  ['I have never danced Garba. Can I still come?','Absolutely. The 6 PM workshop is built for first-timers, and our mentors keep a beginners circle going all night. Nobody sits out.'],
+  ['Is there a dress code?','Traditional festive wear is encouraged — ghagra-choli, kediyu, kurta or anything with mirror work. Best Dressed prizes depend on it.'],
+  ['Are kids allowed?','Yes, this is a family celebration. Children under 8 enter free with a pass-holding adult.'],
+  ['What about parking and transport?','Valet parking is included with VIP passes. Shuttle services run every 20 minutes from the main city bus stand from 4 PM.']
+];
+document.getElementById('faqList').innerHTML = faqs.map(f=>`
+  <div class="faq-item reveal">
+    <button class="faq-q">${f[0]}<span class="pm">+</span></button>
+    <div class="faq-a"><p>${f[1]}</p></div>
+  </div>`).join('');
+
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    document.querySelectorAll('.faq-item.open').forEach(o=>{if(o!==item){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=0;}});
+    const a = item.querySelector('.faq-a');
+    const open = item.classList.toggle('open');
+    a.style.maxHeight = open ? a.scrollHeight+'px' : 0;
+  });
+});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const counters = document.querySelectorAll('[data-count]');
+const cio = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el = e.target, end = +el.dataset.count, t0 = performance.now();
+  const step = now=>{
+    const k = Math.min((now-t0)/1400,1);
+    el.textContent = Math.round(end*(1-Math.pow(1-k,3))) + (k===1&&end>=100?'+':k===1?'+':'');
+    if(k<1)requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);cio.unobserve(el);
+}),{threshold:.6});
+counters.forEach(c=>cio.observe(c));
+
+const target = new Date('2026-10-11T17:00:00');
+const cd = {d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+const pad = n=>String(n).padStart(2,'0');
+function tick(){
+  let diff = Math.max(0, target - Date.now());
+  const d = diff/86400000|0, h = diff%86400000/3600000|0, m = diff%3600000/60000|0, s = diff%60000/1000|0;
+  cd.d.textContent = pad(d);cd.h.textContent = pad(h);cd.m.textContent = pad(m);cd.s.textContent = pad(s);
+}
+tick();setInterval(tick,1000);
+
+const sc = document.getElementById('sparks'), sx = sc.getContext('2d');
+let SP = [];
+function sizeSparks(){sc.width = sc.offsetWidth;sc.height = sc.offsetHeight;}
+sizeSparks();addEventListener('resize',sizeSparks);
+for(let i=0;i<70;i++)SP.push({x:rand(0,1),y:Math.random(),r:rand(.6,2.4),v:rand(.0004,.0012),vx:rand(-.0002,.0002),c:pick(COLORS),a:rand(.25,.7),tw:rand(0,7)});
+(function sparkLoop(){
+  sx.clearRect(0,0,sc.width,sc.height);
+  SP.forEach(p=>{
+    p.y -= p.v;p.x += p.vx;p.tw += .05;
+    if(p.y < -.02){p.y = 1.02;p.x = Math.random();}
+    const alpha = p.a * (0.55 + 0.45*Math.sin(p.tw));
+    sx.globalAlpha = alpha;
+    sx.fillStyle = p.c;
+    sx.shadowColor = p.c;sx.shadowBlur = 8;
+    sx.beginPath();sx.arc(p.x*sc.width,p.y*sc.height,p.r,0,7);sx.fill();
+  });
+  sx.globalAlpha = 1;sx.shadowBlur = 0;
+  requestAnimationFrame(sparkLoop);
+})();
+
+const fc = document.getElementById('floor'), fx = fc.getContext('2d');
+let trail = [], rings = [], floorOn = false;
+function sizeFloor(){fc.width = fc.offsetWidth;fc.height = fc.offsetHeight;}
+sizeFloor();addEventListener('resize',sizeFloor);
+function floorLoop(){
+  fx.clearRect(0,0,fc.width,fc.height);
+  fx.globalCompositeOperation = 'lighter';
+  trail = trail.filter(p=>(p.life -= .022) > 0);
+  rings = rings.filter(r=>(r.life -= .03) > 0);
+  trail.forEach(p=>{
+    p.r += .35;
+    fx.globalAlpha = p.life * .8;
+    fx.fillStyle = p.c;fx.shadowColor = p.c;fx.shadowBlur = 14;
+    fx.beginPath();fx.arc(p.x,p.y,p.r,0,7);fx.fill();
+  });
+  rings.forEach(r=>{
+    r.r += 3.2;
+    fx.globalAlpha = r.life * .7;
+    fx.strokeStyle = r.c;fx.lineWidth = 2.5;fx.shadowColor = r.c;fx.shadowBlur = 16;
+    fx.beginPath();fx.arc(r.x,r.y,r.r,0,7);fx.stroke();
+  });
+  fx.globalAlpha = 1;fx.shadowBlur = 0;fx.globalCompositeOperation = 'source-over';
+  requestAnimationFrame(floorLoop);
+}
+const wrapEl = document.querySelector('.floor-wrap');
+wrapEl.addEventListener('pointermove',e=>{
+  const b = fc.getBoundingClientRect();
+  trail.push({x:e.clientX-b.left,y:e.clientY-b.top,r:rand(1,3),life:1,c:pick(COLORS)});
+  if(trail.length>220)trail.splice(0,trail.length-220);
+});
+wrapEl.addEventListener('pointerdown',e=>{
+  const b = fc.getBoundingClientRect();
+  rings.push({x:e.clientX-b.left,y:e.clientY-b.top,r:6,life:1,c:pick(COLORS)});
+  rings.push({x:e.clientX-b.left,y:e.clientY-b.top,r:2,life:1.2,c:pick(COLORS)});
+  for(let i=0;i<18;i++){
+    const a = rand(0,Math.PI*2), sp = rand(1,5);
+    trail.push({x:e.clientX-b.left,y:e.clientY-b.top,r:rand(1,2.5),life:1,c:pick(COLORS),vx:Math.cos(a)*sp,vy:Math.sin(a)*sp});
+  }
+});
+floorLoop();
+
+const cc = document.getElementById('confetti'), cx = cc.getContext('2d');
+let confetti = [], confettiRunning = false;
+function sizeConf(){cc.width = innerWidth;cc.height = innerHeight;}
+sizeConf();addEventListener('resize',sizeConf);
+function confettiLoop(){
+  cx.clearRect(0,0,cc.width,cc.height);
+  confetti = confetti.filter(p=>p.life > 0 && p.y < cc.height + 30);
+  confetti.forEach(p=>{
+    p.vy += .14;p.x += p.vx;p.y += p.vy;p.rot += p.vr;p.life -= .006;
+    cx.save();
+    cx.globalAlpha = Math.max(0,Math.min(1,p.life*1.6));
+    cx.translate(p.x,p.y);cx.rotate(p.rot);
+    cx.fillStyle = p.c;
+    if(p.shape)cx.beginPath(),cx.arc(0,0,p.w/2,0,7),cx.fill();
+    else cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+    cx.restore();
+  });
+  if(confetti.length){requestAnimationFrame(confettiLoop);}
+  else{confettiRunning = false;cx.clearRect(0,0,cc.width,cc.height);}
+}
+function burst(x,y,n=130){
+  for(let i=0;i<n;i++){
+    const a = rand(0,Math.PI*2), sp = rand(2,13);
+    confetti.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp - rand(2,7),rot:rand(0,7),vr:rand(-.25,.25),w:rand(6,13),h:rand(4,9),c:pick(COLORS),shape:Math.random()<.3,life:rand(.9,1.4)});
+  }
+  if(!confettiRunning){confettiRunning = true;requestAnimationFrame(confettiLoop);}
+}
+
+function toast(html){
+  const t = document.createElement('div');
+  t.className = 'toast';t.innerHTML = html;
+  document.getElementById('toasts').appendChild(t);
+  setTimeout(()=>{t.style.transition = 'opacity .4s, transform .4s';t.style.opacity = 0;t.style.transform = 'translateY(12px)';setTimeout(()=>t.remove(),420);},2600);
+}
+document.addEventListener('click',e=>{
+  const btn = e.target.closest('[data-ticket]');
+  if(!btn)return;
+  const r = btn.getBoundingClientRect();
+  burst(r.left + r.width/2, r.top + r.height/2);
+  toast(`<b>${btn.dataset.ticket}</b> — opening Razorpay secure checkout…`);
+});
+
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    const rx = ((e.clientY - r.top)/r.height - .5) * -7;
+    const ry = ((e.clientX - r.left)/r.width - .5) * 7;
+    card.style.transform = `translateY(-8px) perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform = '';});
+});
+</script>
+</body>
+</html>
