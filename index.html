@@ -274,6 +274,13 @@ header.scrolled{background:rgba(11,6,5,.82);backdrop-filter:blur(14px);border-bo
 .tk-price{font-family:'Yatra One';font-size:52px;margin:18px 0 4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .tk-price small{font-size:16px;color:rgba(255,248,238,.55);-webkit-text-fill-color:rgba(255,248,238,.55)}
 .tk-note{font-size:12.5px;color:rgba(255,248,238,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:24px}
+.tk-card.soon > :not(.tk-soon){filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
+.tk-soon{position:absolute;inset:0;z-index:2;display:grid;place-items:center}
+.tk-soon span{
+  font-family:'Yatra One';font-size:clamp(20px,2.4vw,27px);letter-spacing:.05em;transform:rotate(-5deg);
+  background-image:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  padding:10px 24px;border:1px dashed rgba(255,198,26,.5);border-radius:999px;
+}
 .tk-feats{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:32px;flex:1}
 .tk-feats li{display:flex;gap:11px;font-size:14.5px;font-weight:300;color:rgba(255,248,238,.8);align-items:flex-start;line-height:1.5}
 .tk-feats svg{width:17px;height:17px;stroke:var(--yellow);flex-shrink:0;margin-top:2px}
@@ -523,7 +530,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <h2>Pick your <span class="grad-text">dhamala level</span></h2>
     </div>
     <div class="tk-grid" id="tkGrid">
-      <div class="tk-card tilt reveal" style="--d:0s">
+      <div class="tk-card soon tilt reveal" style="--d:0s">
         <h3>Ras Regular</h3>
         <div class="tk-price"><small>₹</small> 499<small> /person</small></div>
         <div class="tk-note">Early bird · limited</div>
@@ -533,15 +540,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Food &amp; bazaar stalls</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
         </ul>
-        <!-- REPLACE_WITH_RAZORPAY_LINK_RAS_REGULAR : paste your Razorpay Payment Link URL into the href below -->
+        <!-- WHEN RAS REGULAR GOES LIVE: remove the "soon" class above, uncomment the link, paste the Razorpay Payment Link URL
         <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_RAS_REGULAR" target="_blank" rel="noopener noreferrer" data-ticket="Ras Regular">Pay Now</a>
+        -->
+        <div class="tk-soon"><span>Coming Soon</span></div>
       </div>
 
       <div class="tk-card hot tilt reveal" style="--d:.12s">
-        <span class="tk-flag">Most Popular</span>
-        <h3>Dhamala Pass</h3>
-        <div class="tk-price"><small>₹</small> 999<small> /person</small></div>
-        <div class="tk-note">Most loved</div>
+        <span class="tk-flag">Live Now</span>
+        <h3>Flash Sale</h3>
+        <div class="tk-price"><small>₹</small> 239<small> /person</small></div>
+        <div class="tk-note">Flash sale · ends soon</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Regular</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
@@ -549,11 +558,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Ramp walk entry included</li>
         </ul>
-        <!-- REPLACE_WITH_RAZORPAY_LINK_DHAMALA_PASS : paste your Razorpay Payment Link URL into the href below -->
-        <a class="btn btn-grad" href="RAZORPAY_PAYMENT_LINK_DHAMALA_PASS" target="_blank" rel="noopener noreferrer" data-ticket="Dhamala Pass">Pay Now</a>
+        <!-- REPLACE_WITH_RAZORPAY_LINK_FLASH_SALE : paste your Razorpay Payment Link URL (₹239) into the href below -->
+        <a class="btn btn-grad" href="RAZORPAY_PAYMENT_LINK_FLASH_SALE" target="_blank" rel="noopener noreferrer" data-ticket="Flash Sale">Pay Now</a>
       </div>
 
-      <div class="tk-card tilt reveal" style="--d:.24s">
+      <div class="tk-card soon tilt reveal" style="--d:.24s">
         <h3>VIP Dhol Box</h3>
         <div class="tk-price"><small>₹</small> 1999<small> /person</small></div>
         <div class="tk-note">Premium · few left</div>
@@ -564,8 +573,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Valet parking &amp; private gate</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
         </ul>
-        <!-- REPLACE_WITH_RAZORPAY_LINK_VIP_DHOL_BOX : paste your Razorpay Payment Link URL into the href below -->
+        <!-- WHEN VIP GOES LIVE: remove the "soon" class above, uncomment the link, paste the Razorpay Payment Link URL
         <a class="btn btn-ghost" href="RAZORPAY_PAYMENT_LINK_VIP_DHOL_BOX" target="_blank" rel="noopener noreferrer" data-ticket="VIP Dhol Box">Pay Now</a>
+        -->
+        <div class="tk-soon"><span>Coming Soon</span></div>
       </div>
     </div>
 
@@ -700,7 +711,7 @@ const faqs = [
   ['I have never danced Garba. Can I still come?','Absolutely. The 6 PM workshop is built for first-timers, and our mentors keep a beginners circle going all night. Nobody sits out.'],
   ['Is there a dress code?','Traditional festive wear is encouraged — ghagra-choli, kediyu, kurta or anything with mirror work. Best Dressed prizes depend on it.'],
   ['Are kids allowed?','Yes, this is a family celebration. Children under 8 enter free with a pass-holding adult.'],
-  ['What about parking and transport?','Valet parking is included with VIP passes. Shuttle services run every 20 minutes from the main city bus stand from 4 PM.']
+  ['What about parking and transport?','Yes — parking is available at the venue.']
 ];
 document.getElementById('faqList').innerHTML = faqs.map(f=>`
   <div class="faq-item reveal">
