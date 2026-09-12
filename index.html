@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dandiya Dhamaal — One Night of Garba, Ras & Dhol | 11 October</title>
-<meta name="description" content="Dandiya Dhamaal — the biggest dandiya night of the year. Live dhol, garba, prizes, photobooth & dinner. Sunday, 11 October." />
+<meta name="description" content="Dandiya Dhamaal — the biggest dandiya night of the year. Live music, garba, prizes, photobooth & dinner. Sunday, 11 October." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -473,7 +473,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <h2>Where tradition meets <span class="grad-text">full volume</span></h2>
       </div>
       <p class="reveal" style="--d:.1s">Dandiya Dhamaal is not just an event — it is a sea of swirling chaniya cholis, mirrored kedis and dandiyas clashing in perfect rhythm. From first-timers to Garba champions, everyone becomes part of one giant circle under the October sky.</p>
-      <p class="reveal" style="--d:.2s">A sprawling open ground, a powerhouse live dhol ensemble, folk artists from Rajasthan and Gujarat, a photobooth to capture your twirls, and a hot dinner spread to send everyone home smiling.</p>
+      <p class="reveal" style="--d:.2s">A sprawling open ground, a powerhouse line-up of live musicians, folk artists from Rajasthan and Gujarat, a photobooth to capture your twirls, and a hot dinner spread to send everyone home smiling.</p>
       <div class="stats">
         <div class="stat reveal" style="--d:.1s"><b data-count="300">0</b><span>Dancers</span></div>
         <div class="stat reveal" style="--d:.2s"><b data-count="4">0</b><span>Hours of Dhol</span></div>
@@ -613,7 +613,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     <div class="f-grid">
       <div>
         <a href="#home" class="logo"><span class="logo-mark">D</span><span>Dandiya <b>Dhamaal</b></span></a>
-        <p>The biggest dandiya night of the season. Live dhol, garba, awards, photobooth and dinner to finish the night right.</p>
+        <p>The biggest dandiya night of the season. Live music, garba, awards, photobooth and dinner to finish the night right.</p>
       </div>
       <div class="f-col">
         <h4>Explore</h4>
@@ -627,10 +627,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <div class="f-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="mailto:hello@dandyadhamala.com">hello@dandyadhamala.com</a></li>
-          <li><a href="tel:+919800000000">+91 98000 00000</a></li>
-          <li><a href="#tickets">Group bookings (10+)</a></li>
-          <li><a href="#tickets">Sponsor enquiries</a></li>
+          <li><a href="https://wa.me/919353137167" target="_blank" rel="noopener noreferrer">+91 93531 37167</a></li>
+          <li><a href="https://wa.me/919731122899" target="_blank" rel="noopener noreferrer">+91 97311 22899</a></li>
+          <li><a href="https://wa.me/919741632006" target="_blank" rel="noopener noreferrer">+91 97416 32006</a></li>
+          <li><a href="https://wa.me/918105202299" target="_blank" rel="noopener noreferrer">+91 81052 02299</a></li>
         </ul>
       </div>
     </div>
@@ -674,17 +674,17 @@ burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.cl
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navLinks.classList.remove('open');}));
 
 const marquee = document.getElementById('marquee');
-const words = ['Dandiya Dhamaal','11 October','Garba','Live Dhol','Best Dancer Awards','Photobooth','Dinner'];
+const words = ['Dandiya Dhamaal','11 October','Garba','Live Music','Best Dancer Awards','Photobooth','Dinner'];
 const seq = words.map(w=>`<span>${w} <i>✦</i></span>`).join('');
 marquee.innerHTML = seq + seq;
 
 const highlights = [
-  {t:'Live Dhol Tasha Ensemble',d:'A powerhouse dhol squad driving every beat from hello to encore. Feel it in your ribs.',tag:'Main Stage',icon:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'},
   {t:'Pooja',d:'The night opens with the traditional pooja — lamp lighting and prayers for an evening of joy.',tag:'Auspicious Start',icon:'<path d="M12 3.5c1.6 1.7 2.3 3 2.3 4.2a2.3 2.3 0 1 1-4.6 0c0-1.2.7-2.5 2.3-4.2z"/><path d="M4.5 13.5h15a7.5 7.5 0 0 1-4.2 6h-6.6a7.5 7.5 0 0 1-4.2-6z"/>'},
-  {t:'Garba & Raas Workshops',d:'New to the circle? Pros teach the steps at golden hour so you own the floor by night.',tag:'All Levels',icon:'<circle cx="12" cy="5" r="2.5"/><path d="M12 8v6M12 14l-4 6M12 14l4 6M5 10h14"/>'},
-  {t:'Best Dancer Awards',d:'Honours for the best dancers, best couple performances, best dressed and more — awarded live on stage.',tag:'Win Big',icon:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 5H5a3 3 0 0 0 3 3.2"/><path d="M16 5h3a3 3 0 0 1-3 3.2"/><path d="M12 13v4"/><path d="M8 20h8"/><path d="M10 17.5h4l.6 2.5H9.4z"/>'},
+  {t:'Live Music Garba',d:'Live musicians playing your favourite garba and raas beats all night — sing along, clap along, dance along.',tag:'Main Stage',icon:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'},
   {t:'Photobooth',d:'Strike a pose with your squad against glowing festive backdrops and props.',tag:'Say Cheese',icon:'<path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2.2a1 1 0 0 1 .85-.47h3.5a1 1 0 0 1 .85.47L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.4"/>'},
-  {t:'Dinner',d:'A hot spread of dishes and snacks — included with every pass, no coupons needed.',tag:'Dinner',icon:'<path d="M4 11h16"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5"/><path d="M13.3 7.5c0-1.2 1.2-1.3 1.2-2.5"/>'}
+  {t:'Best Dancer Awards',d:'Honours for the best dancers, best couple performances, best dressed and more — awarded live on stage.',tag:'Win Big',icon:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 5H5a3 3 0 0 0 3 3.2"/><path d="M16 5h3a3 3 0 0 1-3 3.2"/><path d="M12 13v4"/><path d="M8 20h8"/><path d="M10 17.5h4l.6 2.5H9.4z"/>'},
+  {t:'Dinner',d:'A hot spread of dishes and snacks — included with every pass, no coupons needed.',tag:'Dinner',icon:'<path d="M4 11h16"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5"/><path d="M13.3 7.5c0-1.2 1.2-1.3 1.2-2.5"/>'},
+  {t:'Community',d:'One big circle of enthusiastic garba enjoyers — strangers at the gate, family by the last beat.',tag:'Garba Family',icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'}
 ];
 document.getElementById('hlGrid').innerHTML = highlights.map((h,i)=>`
   <div class="hl-card tilt reveal" style="--d:${(i%3)*.12}s">
