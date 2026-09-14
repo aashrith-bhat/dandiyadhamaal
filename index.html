@@ -311,6 +311,15 @@ header.scrolled{background:rgba(11,6,5,.82);backdrop-filter:blur(14px);border-bo
   font-size:12px;font-weight:600;line-height:1.5;color:#8a4a00;background:#ffe9c9;border-radius:8px;padding:12px;
 }
 #qrFallback.show{display:grid}
+.cap-meter{margin:0 0 20px;padding:14px 18px;border-radius:14px;background:rgba(255,198,26,.08);border:1px solid rgba(255,198,26,.35);font-size:14px;font-weight:600;color:var(--yellow)}
+.cap-bar{height:8px;border-radius:99px;background:rgba(255,248,238,.12);margin-top:10px;overflow:hidden}
+.cap-bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .6s}
+.closed-banner{
+  display:none;margin:0 0 20px;padding:22px 24px;border-radius:16px;text-align:center;
+  background:rgba(193,18,74,.14);border:1px solid rgba(193,18,74,.5);
+}
+.closed-banner b{font-family:'Yatra One';font-size:22px;color:var(--cranberry);display:block;margin-bottom:6px}
+.closed-banner span{font-size:14.5px;font-weight:300;color:rgba(255,248,238,.75)}
 .pay-steps{flex:1;min-width:220px;display:flex;flex-direction:column;gap:9px;font-weight:300;font-size:15px;color:rgba(255,248,238,.85)}
 .pay-amt{font-family:'Yatra One';font-size:30px;color:var(--yellow)}
 .vpa b{color:var(--yellow);font-weight:600;word-break:break-all}
@@ -595,8 +604,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <div class="tk-card hot tilt reveal" style="--d:.12s">
         <span class="tk-flag">Live Now</span>
         <h3>Flash Sale</h3>
-        <div class="tk-price"><small>₹</small> 239<small> /person</small></div>
-        <div class="tk-note">Flash sale · ends soon</div>
+        <div class="tk-price"><small>₹</small> 249<small> /person</small></div>
+        <div class="tk-note">Only 20 passes · ends soon</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Regular</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
@@ -636,6 +645,15 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal" style="--d:.1s" novalidate>
+      <div class="cap-meter" id="capMeter">
+        <span id="capText">Checking pass availability…</span>
+        <div class="cap-bar"><i id="capFill"></i></div>
+      </div>
+      <div class="closed-banner" id="closedBanner">
+        <b>Flash Sale is fully booked!</b>
+        <span>All 20 passes are claimed. Watch this space — the next slab is coming soon.</span>
+      </div>
+      <div id="formBody">
       <div class="book-grid">
         <label>Name
           <input name="name" id="fName" required placeholder="Your full name" autocomplete="name">
@@ -648,7 +666,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </label>
         <label>Pass
           <select name="tier" id="tierSelect">
-            <option value="Flash Sale">Flash Sale — ₹239</option>
+            <option value="Flash Sale">Flash Sale — ₹249</option>
           </select>
         </label>
       </div>
@@ -661,9 +679,9 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </div>
         <div class="pay-steps">
           <span class="eyebrow" style="letter-spacing:.2em">Step 1 — Pay</span>
-          <div class="pay-amt">Pay <span id="payAmt">₹239</span> only</div>
+          <div class="pay-amt">Pay <span id="payAmt">₹249</span> only</div>
           <p>Scan the QR with any UPI app — GPay, PhonePe, Paytm.</p>
-          <p class="vpa">or send to <b id="vpa">CLUB_UPI_ID@upi</b><button type="button" id="copyVpa">Copy</button></p>
+          <p class="vpa">or send to <b id="vpa">334729431979268@cnrb</b><button type="button" id="copyVpa">Copy</button></p>
           <span class="eyebrow" style="letter-spacing:.2em">Step 2 — Proof</span>
           <p class="pay-note">After paying, upload the payment screenshot below. Your entry pass is issued after our team verifies it (usually within 24 hours).</p>
         </div>
@@ -675,6 +693,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <input type="file" id="shot" accept="image/*" hidden>
       </div>
       <div id="shotPreview"><img id="shotThumb" alt=""><span class="ok" id="shotName"></span></div>
+
+      </div>
 
       <button type="submit" class="btn btn-grad" id="submitBtn">Submit Registration</button>
       <div id="formMsg"></div>
@@ -940,7 +960,7 @@ function burst(x,y,n=130){
 }
 
 const ENDPOINT = 'PASTE_APPS_SCRIPT_WEB_APP_URL';
-const AMOUNTS = {'Flash Sale':239,'Ras Regular':499,'VIP Dhol Box':1999};
+const AMOUNTS = {'Flash Sale':249,'Ras Regular':499,'VIP Dhol Box':1999};
 const form = document.getElementById('bookForm');
 const fName = document.getElementById('fName');
 const fEmail = document.getElementById('fEmail');
@@ -1009,18 +1029,51 @@ form.addEventListener('submit',e=>{
   if(!shotData){showErr('Please upload your payment screenshot first.');return;}
   submitBtn.disabled = true;submitBtn.textContent = 'Submitting…';
   const payload = JSON.stringify({name,email,phone,tier:tierSel.value,amount:AMOUNTS[tierSel.value],image:shotData});
-  fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload})
-    .catch(()=>{})
-    .finally(()=>{
-      submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
-      formMsg.className = 'ok';formMsg.style.display = 'block';
-      formMsg.innerHTML = '<b>Submitted!</b> Our team will verify your payment and send your pass on WhatsApp within 24 hours. See you on the floor!';
-      burst(innerWidth/2,innerHeight/3);
-      form.reset();shotData = null;
-      document.getElementById('shotPreview').style.display = 'none';
-      payAmt.textContent = '₹' + AMOUNTS[tierSel.value];
-    });
+  const send = fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload});
+  send.then(r=>{try{return r.json();}catch(_){return null;}}).catch(()=>null).then(parsed=>{
+    if(parsed && parsed.status === 'closed'){
+      showErr('That was the last pass — someone beat you to it! The Flash Sale is now fully booked.');
+      refreshCap();
+      return;
+    }
+    submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
+    formMsg.className = 'ok';formMsg.style.display = 'block';
+    formMsg.innerHTML = '<b>Submitted!</b> Our team will verify your payment and send your pass on WhatsApp within 24 hours. See you on the floor!';
+    burst(innerWidth/2,innerHeight/3);
+    form.reset();shotData = null;
+    document.getElementById('shotPreview').style.display = 'none';
+    payAmt.textContent = '₹' + AMOUNTS[tierSel.value];
+    refreshCap();
+  });
 });
+
+const formBody = document.getElementById('formBody');
+function paintCap(count,cap,open){
+  cap = cap || 20;
+  const meter = document.getElementById('capMeter');
+  const closed = !open;
+  document.getElementById('capText').textContent = closed
+    ? 'All ' + cap + ' Flash Sale passes claimed!'
+    : count + ' of ' + cap + ' Flash Sale passes claimed';
+  document.getElementById('capFill').style.width = Math.min(100,count/cap*100) + '%';
+  meter.style.borderColor = closed ? 'rgba(229,43,43,.6)' : '';
+  meter.style.color = closed ? '#ff9d9d' : '';
+  document.getElementById('closedBanner').style.display = closed ? 'block' : 'none';
+  formBody.style.display = closed ? 'none' : 'block';
+}
+function refreshCap(){
+  if(!ENDPOINT || ENDPOINT.indexOf('PASTE_') === 0){
+    document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';
+    return;
+  }
+  const sep = ENDPOINT.includes('?') ? '&' : '?';
+  fetch(ENDPOINT + sep + 'action=cap')
+    .then(r=>r.json())
+    .then(d=>{if(d && typeof d.count === 'number')paintCap(d.count,d.cap,d.open);})
+    .catch(()=>{document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';});
+}
+refreshCap();
+setInterval(refreshCap,60000);
 
 document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mousemove',e=>{
