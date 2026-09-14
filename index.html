@@ -960,6 +960,7 @@ function burst(x,y,n=130){
 }
 
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHS9o8bPhRwDfup5Utti6Ku9P9lS_QBuyysYrdSL_bcrm2Fy-489wsUCUj2kNGuKSi5w/exec';
+const FLASH_LOCKED = true;
 const AMOUNTS = {'Flash Sale':249,'Ras Regular':499,'VIP Dhol Box':1999};
 const form = document.getElementById('bookForm');
 const fName = document.getElementById('fName');
@@ -1061,7 +1062,18 @@ function paintCap(count,cap,open){
   document.getElementById('closedBanner').style.display = closed ? 'block' : 'none';
   formBody.style.display = closed ? 'none' : 'block';
 }
+function paintLocked(){
+  const meter = document.getElementById('capMeter');
+  document.getElementById('capText').textContent = 'Flash Sale opens shortly — stay tuned!';
+  document.getElementById('capFill').style.width = '0%';
+  document.querySelector('#closedBanner b').textContent = 'Flash Sale opens shortly!';
+  document.querySelector('#closedBanner span').textContent = 'The counter starts the moment we open. Keep an eye on our socials!';
+  document.getElementById('closedBanner').style.display = 'block';
+  formBody.style.display = 'none';
+  meter.style.borderColor = '';meter.style.color = '';
+}
 function refreshCap(){
+  if(FLASH_LOCKED){paintLocked();return;}
   if(!ENDPOINT || ENDPOINT.indexOf('PASTE_') === 0){
     document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';
     return;
