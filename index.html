@@ -979,6 +979,7 @@ const fileDrop = document.getElementById('fileDrop');
 const shot = document.getElementById('shot');
 const submitBtn = document.getElementById('submitBtn');
 let shotData = null;
+let lastCap = null, pollMs = 30000;
 
 document.querySelectorAll('[data-tier]').forEach(el=>el.addEventListener('click',()=>{
   tierSel.value = el.dataset.tier;
@@ -1034,37 +1035,43 @@ form.addEventListener('submit',e=>{
   if(!shotData){showErr('Please upload your payment screenshot first.');return;}
   submitBtn.disabled = true;submitBtn.textContent = 'Submitting…';
   const payload = JSON.stringify({name,email,phone,tier:tierSel.value,amount:AMOUNTS[tierSel.value],image:shotData});
-  const send = fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload});
-  send.then(r=>{try{return r.json();}catch(_){return null;}}).catch(()=>null).then(parsed=>{
-    if(parsed && parsed.status === 'closed'){
-      showErr('That was the last pass — someone beat you to it! The Flash Sale is now fully booked.');
-      refreshCap();
-      return;
-    }
-    submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
-    formMsg.className = 'ok';formMsg.style.display = 'block';
-    formMsg.innerHTML = '<b>Submitted!</b> Our team will verify your payment and send your pass on WhatsApp within 24 hours. See you on the floor!';
-    burst(innerWidth/2,innerHeight/3);
-    form.reset();shotData = null;
-    document.getElementById('shotPreview').style.display = 'none';
-    payAmt.textContent = '₹' + AMOUNTS[tierSel.value];
-    refreshCap();
-  });
+  fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload})
+    .catch(()=>{})
+    .finally(()=>{
+      refreshCap(finishSubmit);
+    });
 });
+
+function finishSubmit(){
+  submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
+  form.reset();shotData = null;
+  document.getElementById('shotPreview').style.display = 'none';
+  payAmt.textContent = '₹' + AMOUNTS[tierSel.value];
+  if(lastCap && !lastCap.open){
+    formMsg.className = 'err';formMsg.style.display = 'block';
+    formMsg.innerHTML = '<b>Slots just filled!</b> The Flash Sale sold out while you were paying. If your payment already went through, our team will refund you — the next slab is coming soon.';
+    return;
+  }
+  formMsg.className = 'ok';formMsg.style.display = 'block';
+  formMsg.innerHTML = '<b>Submitted!</b> Our team will verify your payment and WhatsApp your pass within 24 hours. No message by then? Ping the Chair on WhatsApp below.';
+  burst(innerWidth/2,innerHeight/3);
+}
 
 const formBody = document.getElementById('formBody');
 function paintCap(count,cap,open){
   cap = cap || 20;
   const meter = document.getElementById('capMeter');
   const closed = !open;
+  const shown = Math.min(count,cap);
   document.getElementById('capText').textContent = closed
     ? 'All ' + cap + ' Flash Sale passes claimed!'
-    : count + ' of ' + cap + ' Flash Sale passes claimed';
-  document.getElementById('capFill').style.width = Math.min(100,count/cap*100) + '%';
+    : shown + ' of ' + cap + ' Flash Sale passes claimed';
+  document.getElementById('capFill').style.width = Math.min(100,shown/cap*100) + '%';
   meter.style.borderColor = closed ? 'rgba(229,43,43,.6)' : '';
   meter.style.color = closed ? '#ff9d9d' : '';
   document.getElementById('closedBanner').style.display = closed ? 'block' : 'none';
   formBody.style.display = closed ? 'none' : 'block';
+  pollMs = (!closed && cap - count <= 3) ? 8000 : 30000;
 }
 function paintLocked(){
   const meter = document.getElementById('capMeter');
@@ -1076,20 +1083,21 @@ function paintLocked(){
   formBody.style.display = 'none';
   meter.style.borderColor = '';meter.style.color = '';
 }
-function refreshCap(){
-  if(FLASH_LOCKED){paintLocked();return;}
+function refreshCap(done){
+  if(FLASH_LOCKED){paintLocked();if(done)done(null);return;}
   if(!ENDPOINT || ENDPOINT.indexOf('PASTE_') === 0){
     document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';
-    return;
+    if(done)done(null);return;
   }
   const sep = ENDPOINT.includes('?') ? '&' : '?';
   fetch(ENDPOINT + sep + 'action=cap')
     .then(r=>r.json())
-    .then(d=>{if(d && typeof d.count === 'number')paintCap(d.count,d.cap,d.open);})
-    .catch(()=>{document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';});
+    .then(d=>{if(d && typeof d.count === 'number'){lastCap = d;paintCap(d.count,d.cap,d.open);}if(done)done(lastCap);})
+    .catch(()=>{document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';if(done)done(null);});
 }
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshCap();});
 refreshCap();
-setInterval(refreshCap,60000);
+(function schedulePoll(){setTimeout(()=>{refreshCap();schedulePoll();},pollMs);})();
 
 document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mousemove',e=>{
