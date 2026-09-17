@@ -995,6 +995,15 @@ const shot = document.getElementById('shot');
 const submitBtn = document.getElementById('submitBtn');
 let shotData = null;
 let lastCap = null, pollMs = 30000;
+function fetchWithTimeout(url,opts,ms){
+  return new Promise((resolve,reject)=>{
+    const ctrl = new AbortController();
+    const id = setTimeout(()=>{ctrl.abort();reject(new Error('timeout'));},ms);
+    fetch(url,Object.assign({},opts,{signal:ctrl.signal}))
+      .then(res=>{clearTimeout(id);resolve(res);})
+      .catch(err=>{clearTimeout(id);reject(err);});
+  });
+}
 
 document.querySelectorAll('[data-tier]').forEach(el=>el.addEventListener('click',()=>{
   tierSel.value = el.dataset.tier;
@@ -1055,14 +1064,12 @@ form.addEventListener('submit',e=>{
   if(!shotData){showErr('Please upload your payment screenshot first.');return;}
   submitBtn.disabled = true;submitBtn.textContent = 'Submitting…';
   const payload = JSON.stringify({name,email,phone,tier:tierSel.value,amount:AMOUNTS[tierSel.value],image:shotData});
-  fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload})
-    .catch(()=>{})
-    .finally(()=>{
-      refreshCap(finishSubmit);
-    });
+  fetchWithTimeout(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload},60000)
+    .then(()=>{finishSubmit(false);})
+    .catch(()=>{finishSubmit(true);});
 });
 
-function finishSubmit(){
+function finishSubmit(timedOut){
   submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
   form.reset();shotData = null;
   document.getElementById('shotPreview').style.display = 'none';
@@ -1073,8 +1080,11 @@ function finishSubmit(){
     return;
   }
   formMsg.className = 'ok';formMsg.style.display = 'block';
-  formMsg.innerHTML = '<b>Submitted!</b> Our team will verify your payment and WhatsApp your pass within 24 hours. No message by then? Ping the Chair on WhatsApp below.';
+  formMsg.innerHTML = timedOut
+    ? '<b>On its way!</b> The network was slow, but your registration should have reached us. Our team verifies every payment against the club account and sends your pass on WhatsApp within 24 hours. <b>Please do not pay again</b> — paid twice by mistake? Ping the Chair, we refund duplicates.'
+    : '<b>Submitted!</b> Our team will verify your payment and WhatsApp your pass within 24 hours. No message by then? Ping the Chair on WhatsApp below.';
   burst(innerWidth/2,innerHeight/3);
+  refreshCap();
 }
 
 const formBody = document.getElementById('formBody');
@@ -1110,7 +1120,7 @@ function refreshCap(done){
     if(done)done(null);return;
   }
   const sep = ENDPOINT.includes('?') ? '&' : '?';
-  fetch(ENDPOINT + sep + 'action=cap')
+  fetchWithTimeout(ENDPOINT + sep + 'action=cap',{method:'GET'},20000)
     .then(r=>r.json())
     .then(d=>{if(d && typeof d.count === 'number'){lastCap = d;paintCap(d.count,d.cap,d.open);}if(done)done(lastCap);})
     .catch(()=>{document.getElementById('capText').textContent = '20 Flash Sale passes only — first come, first served!';if(done)done(null);});
