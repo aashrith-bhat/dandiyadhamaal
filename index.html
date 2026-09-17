@@ -978,10 +978,10 @@ function burst(x,y,n=130){
 
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHS9o8bPhRwDfup5Utti6Ku9P9lS_QBuyysYrdSL_bcrm2Fy-489wsUCUj2kNGuKSi5w/exec';
 const FLASH_LOCKED = true;
-// Absolute unlock moment: 17 Sep 2026, 7:49 PM IST. Once this
-// timestamp passes, the sale stays unlocked permanently - no
-// midnight reset.
-const FLASH_OPEN_AT = 1789634940000;
+// Absolute unlock moment: 17 Sep 2026, 7:49 PM IST. Re-locked on
+// 17 Sep night after the Google account suspension; set
+// FLASH_OPEN_AT far in the future (or flip the guard) to reopen.
+const FLASH_OPEN_AT = Date.now() + 86400000;
 function flashIsLocked(){return FLASH_LOCKED && Date.now() < FLASH_OPEN_AT;}
 const AMOUNTS = {'Flash Sale':249,'Ras Regular':499,'VIP Dhol Box':1999};
 const form = document.getElementById('bookForm');
