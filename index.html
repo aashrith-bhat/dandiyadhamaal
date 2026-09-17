@@ -351,6 +351,7 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 #formMsg{margin-top:18px;font-size:15px;font-weight:600;text-align:center;display:none;padding:14px 18px;border-radius:14px;line-height:1.6}
 #formMsg.ok{display:block;background:rgba(255,198,26,.12);border:1px solid rgba(255,198,26,.45);color:var(--yellow)}
 #formMsg.err{display:block;background:rgba(229,43,43,.14);border:1px solid rgba(229,43,43,.5);color:#ffb3b3}
+#formMsg.warn{display:block;background:rgba(255,198,26,.1);border:1px solid rgba(255,198,26,.45);color:var(--yellow)}
 #submitBtn{width:100%;justify-content:center;margin-top:22px;font-size:16px;padding:16px}
 #submitBtn[disabled]{opacity:.55;cursor:wait}
 @media(max-width:640px){.book-grid{grid-template-columns:1fr}.qr-wrap{margin:0 auto}}
@@ -1042,6 +1043,11 @@ function showErr(m){formMsg.className = 'err';formMsg.style.display = 'block';fo
 form.addEventListener('submit',e=>{
   e.preventDefault();
   formMsg.className = '';formMsg.style.display = 'none';
+  if(flashIsLocked()){
+    formMsg.className = 'warn';formMsg.style.display = 'block';
+    formMsg.textContent = 'The Flash Sale is locked right now. Please wait for it to open — the countdown above shows exactly when.';
+    return;
+  }
   const name = fName.value.trim();
   const email = fEmail.value.trim();
   const phone = fPhone.value.replace(/\D/g,'');
