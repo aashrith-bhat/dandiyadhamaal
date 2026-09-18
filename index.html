@@ -280,10 +280,10 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tk-soon{position:absolute;inset:0;z-index:2;display:grid;place-items:center}
 .soon-stack{display:flex;flex-direction:column;align-items:center;gap:10px}
 .soon-stack i{font-style:normal;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:800;color:var(--yellow)}
-.tk-soon.sold{display:block}
+.tk-soon.sold{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 .tk-soon.sold .sold-stamp{
   display:inline-block;font-family:'Yatra One';font-size:clamp(30px,4vw,44px);letter-spacing:.04em;
-  color:#ff5c5c;text-transform:uppercase;transform:rotate(-8deg);
+  color:#ff5c5c;-webkit-text-fill-color:#ff5c5c;text-transform:uppercase;transform:rotate(-8deg);
   border:3px solid rgba(255,92,92,.75);border-radius:14px;padding:8px 28px;
   background:rgba(229,43,43,.12);text-shadow:0 0 22px rgba(229,43,43,.45);
 }
