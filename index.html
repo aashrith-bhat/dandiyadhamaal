@@ -1028,10 +1028,10 @@ const submitBtn = document.getElementById('submitBtn');
 const formBody = document.getElementById('formBody');
 let shotData = null;
 const FLASH_LOCKED = true;
-// Slab 1 opens automatically at 2:49 PM IST, 19 Sep 2026. The
+// Slab 1 opens automatically at 10:49 AM IST, 19 Sep 2026. The
 // absolute timestamp means no midnight reset - once it fires,
 // Slab 1 stays unlocked permanently.
-const FLASH_OPEN_AT = 1789789740000;
+const FLASH_OPEN_AT = 1789775340000;
 function flashIsLocked(){return FLASH_LOCKED && Date.now() < FLASH_OPEN_AT;}
 
 for (let n = 1; n <= 10; n++) {
