@@ -280,6 +280,26 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tk-soon{position:absolute;inset:0;z-index:2;display:grid;place-items:center}
 .soon-stack{display:flex;flex-direction:column;align-items:center;gap:10px}
 .soon-stack i{font-style:normal;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:800;color:var(--yellow)}
+.tk-soon.sold{display:block}
+.tk-soon.sold .sold-stamp{
+  display:inline-block;font-family:'Yatra One';font-size:clamp(30px,4vw,44px);letter-spacing:.04em;
+  color:#ff5c5c;text-transform:uppercase;transform:rotate(-8deg);
+  border:3px solid rgba(255,92,92,.75);border-radius:14px;padding:8px 28px;
+  background:rgba(229,43,43,.12);text-shadow:0 0 22px rgba(229,43,43,.45);
+}
+.tk-soon.sold .sold-sub{
+  display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  color:rgba(255,248,238,.8);margin-top:14px;
+  background:none;border:none;padding:0;transform:none;
+  -webkit-text-fill-color:rgba(255,248,238,.8);
+}
+.sale-over{
+  max-width:780px;margin:0 auto 30px;padding:22px 28px;border-radius:18px;text-align:center;
+  background:linear-gradient(120deg,rgba(229,43,43,.16),rgba(193,18,74,.18));
+  border:1px solid rgba(229,43,43,.5);
+}
+.sale-over b{font-family:'Yatra One';font-size:clamp(20px,2.6vw,28px);display:block;margin-bottom:8px;color:#ff8f8f}
+.sale-over span{font-size:14.5px;font-weight:300;color:rgba(255,248,238,.8);line-height:1.65;display:block}
 .tk-soon span{
   font-family:'Yatra One';font-size:clamp(20px,2.4vw,27px);letter-spacing:.05em;transform:rotate(-5deg);
   background-image:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
@@ -599,6 +619,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <span class="eyebrow" style="justify-content:center">Passes</span>
       <h2>Pick your <span class="grad-text">tickets</span></h2>
     </div>
+    <div class="sale-over reveal">
+      <b>Flash Sale is over — tickets sold out!</b>
+      <span>All 20 passes were claimed. Stay tuned for the next window and the next slab — announcements drop on our socials first.</span>
+    </div>
     <div class="tk-grid" id="tkGrid">
       <div class="tk-card soon tilt reveal" style="--d:0s">
         <h3>Ras Regular</h3>
@@ -617,7 +641,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <div class="tk-card soon tilt reveal" style="--d:.12s">
         <h3>Flash Sale</h3>
         <div class="tk-price"><small>₹</small> 249<small> /person</small></div>
-        <div class="tk-note">Limited passes · first come, first served</div>
+        <div class="tk-note">This window has ended</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Regular</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
@@ -626,7 +650,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
-        <div class="tk-soon"><span>Coming Soon</span></div>
+        <div class="tk-soon sold"><div class="soon-stack"><span class="sold-stamp">Sold Out</span><span class="sold-sub">Flash Sale has ended</span></div></div>
       </div>
 
       <div class="tk-card soon tilt reveal" style="--d:.24s">
