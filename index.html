@@ -316,6 +316,7 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tk-privacy{max-width:620px;margin:36px auto 0;text-align:center;font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(255,248,238,.55)}
 .slab-proof{margin-top:auto;margin-bottom:14px;padding:10px 14px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:13px;font-weight:600;text-align:center}
 .social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 20px;padding:12px 18px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:14px;font-weight:600}
+.social-proof[hidden]{display:none}
 .tk-card .slab-proof{margin-top:auto}
 .book{padding:30px 0 60px}
 .book-card{
@@ -650,19 +651,19 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
 
       <div class="tk-card hot tilt reveal" style="--d:.12s">
         <span class="tk-flag">Live Now</span>
-        <h3>VIP Dhol Box</h3>
+        <h3>Slab 1</h3>
         <div class="tk-price"><span class="was">₹499</span> <small>₹</small> 399<small> /person</small></div>
         <div class="tk-note">Slab 1 · selling now</div>
         <ul class="tk-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Flash Sale</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Front-stage VIP deck seating</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Unlimited food &amp; thandai counter</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Valet parking &amp; private gate</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Regular</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Reserved circle front zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
         <div class="slab-proof" id="slab1Proof" hidden></div>
-        <a class="btn btn-grad" href="#book" data-tier="VIP Dhol Box">Get Pass</a>
+        <a class="btn btn-grad" href="#book" data-tier="Slab 1">Get Pass</a>
       </div>
       <div class="tk-card soon tilt reveal" style="--d:.24s">
         <h3>Ras Regular</h3>
@@ -686,7 +687,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
   <div class="wrap">
     <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
       <span class="eyebrow" style="justify-content:center">Book Your Pass</span>
-      <h2>Slab 1 — <span class="grad-text">VIP Dhol Box</span> is live</h2>
+      <h2>Slab 1 is <span class="grad-text">live</span></h2>
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal" style="--d:.1s" novalidate>
@@ -703,7 +704,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </label>
         <label>Pass
           <select name="tier" id="tierSelect">
-            <option value="VIP Dhol Box">VIP Dhol Box (Slab 1) — ₹399</option>
+            <option value="Slab 1">Slab 1 — ₹399</option>
           </select>
         </label>
         <label>Tickets
