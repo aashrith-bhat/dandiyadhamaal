@@ -309,6 +309,9 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tk-feats li{display:flex;gap:11px;font-size:14.5px;font-weight:300;color:rgba(255,248,238,.8);align-items:flex-start;line-height:1.5}
 .tk-feats svg{width:17px;height:17px;stroke:var(--yellow);flex-shrink:0;margin-top:2px}
 .tk-privacy{max-width:620px;margin:36px auto 0;text-align:center;font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(255,248,238,.55)}
+.slab-proof{margin-top:auto;margin-bottom:14px;padding:10px 14px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:13px;font-weight:600;text-align:center}
+.social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 20px;padding:12px 18px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:14px;font-weight:600}
+.tk-card .slab-proof{margin-top:auto}
 .book{padding:30px 0 60px}
 .book-card{
   max-width:780px;margin:0 auto;background:var(--glass);border:1px solid var(--line);
@@ -473,7 +476,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <li><a href="#highlights">Highlights</a></li>
       <li><a href="#schedule">Schedule</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#tickets" class="btn btn-grad btn-sm">View Passes</a></li>
+      <li><a href="#book" class="btn btn-grad btn-sm">Get Passes</a></li>
     </ul>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -513,7 +516,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     </div>
 
     <div class="hero-cta">
-      <a href="#tickets" class="btn btn-grad">View Passes</a>
+      <a href="#book" class="btn btn-grad">Book Your Passes</a>
       <a href="#about" class="btn btn-ghost">Discover the Night</a>
     </div>
 
@@ -653,10 +656,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <div class="tk-soon sold"><div class="soon-stack"><span class="sold-stamp">Sold Out</span><span class="sold-sub">Flash Sale has ended</span></div></div>
       </div>
 
-      <div class="tk-card soon tilt reveal" style="--d:.24s">
+      <div class="tk-card hot tilt reveal" style="--d:.24s">
+        <span class="tk-flag">Live Now</span>
         <h3>VIP Dhol Box</h3>
         <div class="tk-price"><small>₹</small> 1999<small> /person</small></div>
-        <div class="tk-note">Slab 1 · coming soon</div>
+        <div class="tk-note">Slab 1 · selling now</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Flash Sale</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Front-stage VIP deck seating</li>
@@ -665,10 +669,72 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>VIP photo booth access</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
-        <div class="tk-soon"><div class="soon-stack"><i>Slab 1</i><span>Coming Soon</span></div></div>
+        <div class="slab-proof" id="slab1Proof" hidden></div>
+        <a class="btn btn-grad" href="#book" data-tier="VIP Dhol Box">Get Pass</a>
       </div>
     </div>
 
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Book Your Pass</span>
+      <h2>Slab 1 — <span class="grad-text">VIP Dhol Box</span> is live</h2>
+    </div>
+    <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
+    <form id="bookForm" class="book-card reveal" style="--d:.1s" novalidate>
+      <div class="social-proof" id="socialProof" hidden></div>
+      <div class="book-grid">
+        <label>Name
+          <input name="name" id="fName" required placeholder="Your full name" autocomplete="name">
+        </label>
+        <label>Email
+          <input type="email" name="email" id="fEmail" required placeholder="you@example.com" autocomplete="email">
+        </label>
+        <label>WhatsApp Number
+          <input name="phone" id="fPhone" required placeholder="10-digit mobile number" inputmode="tel" autocomplete="tel">
+        </label>
+        <label>Pass
+          <select name="tier" id="tierSelect">
+            <option value="VIP Dhol Box">VIP Dhol Box (Slab 1) — ₹1999</option>
+          </select>
+        </label>
+        <label>Tickets
+          <select name="tickets" id="qtySel"></select>
+        </label>
+        <label>Buying for
+          <input name="group" placeholder="Names of others in your group (optional)">
+        </label>
+      </div>
+
+      <div class="pay-box">
+        <div class="qr-wrap">
+          <img id="upiQr" alt="UPI payment QR code">
+          <div id="qrFallback">QR loading…<br>or pay to the UPI ID below</div>
+        </div>
+        <div class="pay-steps">
+          <span class="eyebrow" style="letter-spacing:.2em">Step 1 — Pay</span>
+          <div class="pay-amt">Pay <span id="payAmt">₹1999</span> only</div>
+          <p><span id="qtySummary">1 pass × ₹1999</span> — scan the QR with any UPI app (GPay, PhonePe, Paytm). The QR is pre-filled with your exact total.</p>
+          <p class="vpa">or send to <b id="vpa">334729431979268@cnrb</b><button type="button" id="copyVpa">Copy</button></p>
+          <span class="eyebrow" style="letter-spacing:.2em">Step 2 — Proof</span>
+          <p class="pay-note">After paying, upload the payment screenshot below. Your passes are issued after our team verifies it (usually within 24 hours).</p>
+        </div>
+      </div>
+
+      <div class="file-drop" id="fileDrop">
+        <b>Step 3 — Upload payment screenshot</b><br>
+        Click or drop the screenshot here (JPG / PNG)
+        <input type="file" id="shot" accept="image/*" hidden>
+      </div>
+      <div id="shotPreview"><img id="shotThumb" alt=""><span class="ok" id="shotName"></span></div>
+
+      <button type="submit" class="btn btn-grad" id="submitBtn">Submit Registration</button>
+      <div id="formMsg"></div>
+    </form>
+    <p class="tk-privacy reveal" style="--d:.15s">Your name, email and phone number are collected only by us to issue your entry passes — they are never sold or shared for any other purpose. Payment screenshots are used solely to verify your payment.</p>
   </div>
 </section>
 
@@ -688,7 +754,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <span class="eyebrow" style="justify-content:center">11 October 2026</span>
       <h2 style="margin-top:14px">The circle is waiting. <br/><span class="grad-text">Are you in?</span></h2>
       <p>Early-bird passes are limited and vanishing faster than jalebis at a wedding. Lock yours before the dhol starts.</p>
-      <a class="btn btn-grad" href="#tickets" style="font-size:17px;padding:17px 40px">View Passes</a>
+      <a class="btn btn-grad" href="#book" style="font-size:17px;padding:17px 40px">Reserve My Spot</a>
     </div>
   </div>
 </section>
@@ -929,6 +995,146 @@ function burst(x,y,n=130){
   if(!confettiRunning){confettiRunning = true;requestAnimationFrame(confettiLoop);}
 }
 
+
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHS9o8bPhRwDfup5Utti6Ku9P9lS_QBuyysYrdSL_bcrm2Fy-489wsUCUj2kNGuKSi5w/exec';
+const PRICE_PER_PASS = 1999;
+const VPA = '334729431979268@cnrb';
+const form = document.getElementById('bookForm');
+const fName = document.getElementById('fName');
+const fEmail = document.getElementById('fEmail');
+const fPhone = document.getElementById('fPhone');
+const tierSel = document.getElementById('tierSelect');
+const qtySel = document.getElementById('qtySel');
+const payAmt = document.getElementById('payAmt');
+const qtySummary = document.getElementById('qtySummary');
+const vpaEl = document.getElementById('vpa');
+const upiQr = document.getElementById('upiQr');
+const formMsg = document.getElementById('formMsg');
+const fileDrop = document.getElementById('fileDrop');
+const shot = document.getElementById('shot');
+const submitBtn = document.getElementById('submitBtn');
+let shotData = null;
+
+for (let n = 1; n <= 10; n++) {
+  const o = document.createElement('option');
+  o.value = n;
+  o.textContent = n + (n === 1 ? ' ticket' : ' tickets') + ' — ₹' + (PRICE_PER_PASS * n);
+  qtySel.appendChild(o);
+}
+
+function totalAmt(){return PRICE_PER_PASS * parseInt(qtySel.value, 10);}
+function updateQr(){
+  const upi = 'upi://pay?pa=' + VPA + '&pn=Rotaract%20Bangalore%20West&am=' + totalAmt() + '&cu=INR';
+  upiQr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=0&ecc=M&data=' + encodeURIComponent(upi);
+}
+function updatePay(){
+  const n = parseInt(qtySel.value, 10);
+  payAmt.textContent = '₹' + totalAmt();
+  qtySummary.textContent = n + (n === 1 ? ' pass' : ' passes') + ' × ₹' + PRICE_PER_PASS;
+  updateQr();
+}
+qtySel.addEventListener('change', updatePay);
+
+document.querySelectorAll('[data-tier]').forEach(el => el.addEventListener('click', () => {
+  tierSel.value = el.dataset.tier;
+  updatePay();
+}));
+
+upiQr.addEventListener('error', () => {
+  upiQr.style.display = 'none';
+  document.getElementById('qrFallback').classList.add('show');
+});
+document.getElementById('copyVpa').addEventListener('click', () => {
+  const btn = document.getElementById('copyVpa');
+  const done = () => {btn.textContent = 'Copied!';setTimeout(() => btn.textContent = 'Copy', 1600);};
+  if (navigator.clipboard) {navigator.clipboard.writeText(vpaEl.textContent).then(done).catch(done);}
+  else {done();}
+});
+
+fileDrop.addEventListener('click', () => shot.click());
+['dragover','dragenter'].forEach(ev => fileDrop.addEventListener(ev, e => {e.preventDefault();fileDrop.classList.add('over');}));
+['dragleave','drop'].forEach(ev => fileDrop.addEventListener(ev, e => {e.preventDefault();fileDrop.classList.remove('over');}));
+fileDrop.addEventListener('drop', e => {const f = e.dataTransfer.files[0];if (f)handleShot(f);});
+shot.addEventListener('change', () => {if (shot.files[0])handleShot(shot.files[0]);});
+
+function handleShot(file){
+  if (!file.type.startsWith('image/')){showErr('Please upload an image file (JPG or PNG).');return;}
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    const max = 1400, k = Math.min(1, max/Math.max(img.width,img.height));
+    const c = document.createElement('canvas');
+    c.width = Math.round(img.width*k);c.height = Math.round(img.height*k);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const dataUrl = c.toDataURL('image/jpeg',.82);
+    shotData = dataUrl.split(',')[1];
+    document.getElementById('shotThumb').src = dataUrl;
+    document.getElementById('shotName').textContent = file.name;
+    document.getElementById('shotPreview').style.display = 'flex';
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+}
+
+function showErr(m){formMsg.className = 'err';formMsg.style.display = 'block';formMsg.textContent = m;}
+
+function fetchWithTimeout(url,opts,ms){
+  return new Promise((resolve,reject)=>{
+    const ctrl = new AbortController();
+    const id = setTimeout(()=>{ctrl.abort();reject(new Error('timeout'));},ms);
+    fetch(url,Object.assign({},opts,{signal:ctrl.signal}))
+      .then(res=>{clearTimeout(id);resolve(res);})
+      .catch(err=>{clearTimeout(id);reject(err);});
+  });
+}
+
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  formMsg.className = '';formMsg.style.display = 'none';
+  const name = fName.value.trim();
+  const email = fEmail.value.trim();
+  const phone = fPhone.value.replace(/\D/g,'');
+  const qty = parseInt(qtySel.value,10);
+  if(!name || !email.includes('@') || phone.length < 10){showErr('Please fill your name, a valid email and a 10-digit phone number.');return;}
+  if(!shotData){showErr('Please upload your payment screenshot first.');return;}
+  submitBtn.disabled = true;submitBtn.textContent = 'Submitting…';
+  const payload = JSON.stringify({name,email,phone,tier:tierSel.value,tickets:qty,amount:totalAmt(),image:shotData});
+  fetchWithTimeout(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload},60000)
+    .then(()=>{finishSubmit(false);})
+    .catch(()=>{finishSubmit(true);});
+});
+
+function finishSubmit(timedOut){
+  submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
+  form.reset();shotData = null;
+  document.getElementById('shotPreview').style.display = 'none';
+  updatePay();
+  formMsg.className = 'ok';formMsg.style.display = 'block';
+  formMsg.innerHTML = timedOut
+    ? '<b>On its way!</b> The network was slow, but your registration should have reached us. Our team verifies every payment against the club account and sends your passes on WhatsApp within 24 hours. <b>Please do not pay again</b> — paid twice by mistake? Ping the Chair, we refund duplicates.'
+    : '<b>Submitted!</b> Our team will verify your payment and WhatsApp your passes within 24 hours. No message by then? Ping the Chair on WhatsApp below.';
+  burst(innerWidth/2,innerHeight/3);
+  loadBadge();
+}
+
+function loadBadge(){
+  if(!ENDPOINT)return;
+  const sep = ENDPOINT.includes('?') ? '&' : '?';
+  fetchWithTimeout(ENDPOINT + sep + 'action=slab1',{method:'GET'},20000)
+    .then(r=>r.json())
+    .then(d=>{
+      if(!d || !d.show)return;
+      const badge = document.getElementById('socialProof');
+      badge.textContent = d.today + (d.today === 1 ? ' ticket' : ' tickets') + ' grabbed today — join them!';
+      badge.hidden = false;
+      const card = document.getElementById('slab1Proof');
+      card.textContent = d.today + ' grabbed today';
+      card.hidden = false;
+    })
+    .catch(()=>{});
+}
+updatePay();
+loadBadge();
 
 document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mousemove',e=>{
