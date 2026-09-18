@@ -275,6 +275,11 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tk-card h3{font-size:26px}
 .tk-price{font-family:'Yatra One';font-size:52px;margin:18px 0 4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .tk-price small{font-size:16px;color:rgba(255,248,238,.55);-webkit-text-fill-color:rgba(255,248,238,.55)}
+.tk-price .was{
+  font-size:20px;margin-right:8px;vertical-align:middle;text-decoration:line-through;
+  background:none;-webkit-background-clip:initial;background-clip:initial;
+  -webkit-text-fill-color:rgba(255,248,238,.45);color:rgba(255,248,238,.45);
+}
 .tk-note{font-size:12.5px;color:rgba(255,248,238,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:24px}
 .tk-card.soon > :not(.tk-soon){filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
 .tk-soon{position:absolute;inset:0;z-index:2;display:grid;place-items:center}
@@ -627,21 +632,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <span>All 20 passes were claimed. Stay tuned for the next window and the next slab — announcements drop on our socials first.</span>
     </div>
     <div class="tk-grid" id="tkGrid">
-      <div class="tk-card soon tilt reveal" style="--d:0s">
-        <h3>Ras Regular</h3>
-        <div class="tk-price"><small>₹</small> 499<small> /person</small></div>
-        <div class="tk-note">Slab 2 · coming soon</div>
-        <ul class="tk-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
-        </ul>
-        <div class="tk-soon"><div class="soon-stack"><i>Slab 2</i><span>Coming Soon</span></div></div>
-      </div>
 
-      <div class="tk-card soon tilt reveal" style="--d:.12s">
+      <div class="tk-card soon tilt reveal" style="--d:0s">
         <h3>Flash Sale</h3>
         <div class="tk-price"><small>₹</small> 249<small> /person</small></div>
         <div class="tk-note">This window has ended</div>
@@ -656,10 +648,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <div class="tk-soon sold"><div class="soon-stack"><span class="sold-stamp">Sold Out</span><span class="sold-sub">Flash Sale has ended</span></div></div>
       </div>
 
-      <div class="tk-card hot tilt reveal" style="--d:.24s">
+      <div class="tk-card hot tilt reveal" style="--d:.12s">
         <span class="tk-flag">Live Now</span>
         <h3>VIP Dhol Box</h3>
-        <div class="tk-price"><small>₹</small> 1999<small> /person</small></div>
+        <div class="tk-price"><span class="was">₹499</span> <small>₹</small> 399<small> /person</small></div>
         <div class="tk-note">Slab 1 · selling now</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Flash Sale</li>
@@ -671,6 +663,19 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </ul>
         <div class="slab-proof" id="slab1Proof" hidden></div>
         <a class="btn btn-grad" href="#book" data-tier="VIP Dhol Box">Get Pass</a>
+      </div>
+      <div class="tk-card soon tilt reveal" style="--d:.24s">
+        <h3>Ras Regular</h3>
+        <div class="tk-price"><span class="was">₹599</span> <small>₹</small> 499<small> /person</small></div>
+        <div class="tk-note">Slab 2 · coming soon</div>
+        <ul class="tk-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
+        </ul>
+        <div class="tk-soon"><div class="soon-stack"><i>Slab 2</i><span>Coming Soon</span></div></div>
       </div>
     </div>
 
@@ -698,7 +703,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </label>
         <label>Pass
           <select name="tier" id="tierSelect">
-            <option value="VIP Dhol Box">VIP Dhol Box (Slab 1) — ₹1999</option>
+            <option value="VIP Dhol Box">VIP Dhol Box (Slab 1) — ₹399</option>
           </select>
         </label>
         <label>Tickets
@@ -716,8 +721,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         </div>
         <div class="pay-steps">
           <span class="eyebrow" style="letter-spacing:.2em">Step 1 — Pay</span>
-          <div class="pay-amt">Pay <span id="payAmt">₹1999</span> only</div>
-          <p><span id="qtySummary">1 pass × ₹1999</span> — scan the QR with any UPI app (GPay, PhonePe, Paytm). The QR is pre-filled with your exact total.</p>
+          <div class="pay-amt">Pay <span id="payAmt">₹399</span> only</div>
+          <p><span id="qtySummary">1 pass × ₹399</span> — scan the QR with any UPI app (GPay, PhonePe, Paytm). The QR is pre-filled with your exact total.</p>
           <p class="vpa">or send to <b id="vpa">334729431979268@cnrb</b><button type="button" id="copyVpa">Copy</button></p>
           <span class="eyebrow" style="letter-spacing:.2em">Step 2 — Proof</span>
           <p class="pay-note">After paying, upload the payment screenshot below. Your passes are issued after our team verifies it (usually within 24 hours).</p>
@@ -997,7 +1002,7 @@ function burst(x,y,n=130){
 
 
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwHS9o8bPhRwDfup5Utti6Ku9P9lS_QBuyysYrdSL_bcrm2Fy-489wsUCUj2kNGuKSi5w/exec';
-const PRICE_PER_PASS = 1999;
+const PRICE_PER_PASS = 399;
 const VPA = '334729431979268@cnrb';
 const form = document.getElementById('bookForm');
 const fName = document.getElementById('fName');
