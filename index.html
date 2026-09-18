@@ -696,6 +696,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <span class="ft-clock" id="ftClock">--:--</span>
       </div>
       <div class="social-proof" id="socialProof" hidden></div>
+      <div id="formBody">
       <div class="book-grid">
         <label>Name
           <input name="name" id="fName" required placeholder="Your full name" autocomplete="name">
@@ -740,6 +741,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <input type="file" id="shot" accept="image/*" hidden>
       </div>
       <div id="shotPreview"><img id="shotThumb" alt=""><span class="ok" id="shotName"></span></div>
+      </div>
 
       <button type="submit" class="btn btn-grad" id="submitBtn">Submit Registration</button>
       <div id="formMsg"></div>
@@ -1023,6 +1025,7 @@ const formMsg = document.getElementById('formMsg');
 const fileDrop = document.getElementById('fileDrop');
 const shot = document.getElementById('shot');
 const submitBtn = document.getElementById('submitBtn');
+const formBody = document.getElementById('formBody');
 let shotData = null;
 const FLASH_LOCKED = true;
 // Slab 1 opens automatically at 2:49 PM IST, 19 Sep 2026. The
@@ -1151,12 +1154,16 @@ function tickFlashTimer(){
       burst(innerWidth/2,innerHeight/3);
       loadBadge();
       setTimeout(()=>{t.style.display = 'none';},6000);
-      return;
+    } else {
+      t.style.display = 'none';
     }
-    t.style.display = 'none';
+    formBody.style.display = 'block';
+    submitBtn.style.display = 'inline-flex';
     return;
   }
   t.style.display = 'flex';
+  formBody.style.display = 'none';
+  submitBtn.style.display = 'none';
   const diff = FLASH_OPEN_AT - Date.now();
   const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24, m = Math.floor(diff/60000)%60, s = Math.floor(diff%60000/1000);
   ftClock.textContent = (d > 0 ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
