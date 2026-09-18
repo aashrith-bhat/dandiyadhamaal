@@ -691,6 +691,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal" style="--d:.1s" novalidate>
+      <div class="flash-timer" id="flashTimer">
+        <span class="ft-label">Slab 1 opens in</span>
+        <span class="ft-clock" id="ftClock">--:--</span>
+      </div>
       <div class="social-proof" id="socialProof" hidden></div>
       <div class="book-grid">
         <label>Name
@@ -1020,6 +1024,12 @@ const fileDrop = document.getElementById('fileDrop');
 const shot = document.getElementById('shot');
 const submitBtn = document.getElementById('submitBtn');
 let shotData = null;
+const FLASH_LOCKED = true;
+// Slab 1 opens automatically at 2:49 PM IST, 19 Sep 2026. The
+// absolute timestamp means no midnight reset - once it fires,
+// Slab 1 stays unlocked permanently.
+const FLASH_OPEN_AT = 1789789740000;
+function flashIsLocked(){return FLASH_LOCKED && Date.now() < FLASH_OPEN_AT;}
 
 for (let n = 1; n <= 10; n++) {
   const o = document.createElement('option');
@@ -1097,6 +1107,11 @@ function fetchWithTimeout(url,opts,ms){
 form.addEventListener('submit',e=>{
   e.preventDefault();
   formMsg.className = '';formMsg.style.display = 'none';
+  if(flashIsLocked()){
+    formMsg.className = 'warn';formMsg.style.display = 'block';
+    formMsg.textContent = 'Slab 1 sales are locked right now. Please wait for them to open — the countdown above shows exactly when.';
+    return;
+  }
   const name = fName.value.trim();
   const email = fEmail.value.trim();
   const phone = fPhone.value.replace(/\D/g,'');
@@ -1122,6 +1137,32 @@ function finishSubmit(timedOut){
   burst(innerWidth/2,innerHeight/3);
   loadBadge();
 }
+
+const ftClock = document.getElementById('ftClock');
+let unlockFired = false;
+function tickFlashTimer(){
+  const t = document.getElementById('flashTimer');
+  if(!flashIsLocked()){
+    const sinceOpen = Date.now() - FLASH_OPEN_AT;
+    if(sinceOpen < 60000 && !unlockFired){
+      unlockFired = true;
+      t.innerHTML = '<span class="ft-label">Slab 1</span><span class="ft-clock">is LIVE!</span>';
+      t.style.display = 'flex';
+      burst(innerWidth/2,innerHeight/3);
+      loadBadge();
+      setTimeout(()=>{t.style.display = 'none';},6000);
+      return;
+    }
+    t.style.display = 'none';
+    return;
+  }
+  t.style.display = 'flex';
+  const diff = FLASH_OPEN_AT - Date.now();
+  const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24, m = Math.floor(diff/60000)%60, s = Math.floor(diff%60000/1000);
+  ftClock.textContent = (d > 0 ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+}
+tickFlashTimer();
+setInterval(tickFlashTimer,500);
 
 function loadBadge(){
   if(!ENDPOINT)return;
