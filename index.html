@@ -354,14 +354,7 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 }
 .closed-banner b{font-family:'Yatra One';font-size:22px;color:var(--cranberry);display:block;margin-bottom:6px}
 .closed-banner span{font-size:14.5px;font-weight:300;color:rgba(255,248,238,.75)}
-.flash-timer{
-  display:none;flex-direction:column;align-items:center;gap:8px;margin:0 0 20px;
-  padding:20px;border-radius:16px;
-  background:linear-gradient(120deg,rgba(255,122,0,.12),rgba(193,18,74,.14));
-  border:1px solid rgba(255,198,26,.35);
-}
-.ft-label{font-size:12px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.7)}
-.ft-clock{font-family:'Yatra One';font-size:46px;line-height:1;color:var(--yellow);text-shadow:0 0 26px rgba(255,198,26,.4)}
+.locked-note{margin:0 0 20px;padding:14px 18px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:14px;font-weight:600;text-align:center}
 .pay-steps{flex:1;min-width:220px;display:flex;flex-direction:column;gap:9px;font-weight:300;font-size:15px;color:rgba(255,248,238,.85)}
 .pay-amt{font-family:'Yatra One';font-size:30px;color:var(--yellow)}
 .vpa b{color:var(--yellow);font-weight:600;word-break:break-all}
@@ -688,10 +681,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal locked-form" style="--d:.1s" novalidate>
-      <div class="flash-timer" id="flashTimer">
-        <span class="ft-label">Slab 1 opens in</span>
-        <span class="ft-clock" id="ftClock">--:--</span>
-      </div>
+      <div class="locked-note" id="lockedNote">Slab 1 bookings open at 10:49 AM today — this form unlocks automatically. No payment needed right now.</div>
       <div class="social-proof" id="socialProof" hidden></div>
       <div id="formBody">
       <div class="book-grid">
@@ -1141,30 +1131,17 @@ function finishSubmit(timedOut){
 const ftClock = document.getElementById('ftClock');
 let unlockFired = false;
 function tickFlashTimer(){
-  const t = document.getElementById('flashTimer');
+  const note = document.getElementById('lockedNote');
   if(!flashIsLocked()){
     form.classList.remove('locked-form');
-    const sinceOpen = Date.now() - FLASH_OPEN_AT;
-    if(sinceOpen < 60000 && !unlockFired){
-      unlockFired = true;
-      t.innerHTML = '<span class="ft-label">Slab 1</span><span class="ft-clock">is LIVE!</span>';
-      t.style.display = 'flex';
-      burst(innerWidth/2,innerHeight/3);
-      loadBadge();
-      setTimeout(()=>{t.style.display = 'none';},6000);
-    } else {
-      t.style.display = 'none';
-    }
+    if(note)note.style.display = 'none';
     formBody.style.display = 'block';
     submitBtn.style.display = 'inline-flex';
     return;
   }
-  t.style.display = 'flex';
+  if(note)note.style.display = 'block';
   formBody.style.display = 'none';
   submitBtn.style.display = 'none';
-  const diff = FLASH_OPEN_AT - Date.now();
-  const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24, m = Math.floor(diff/60000)%60, s = Math.floor(diff%60000/1000);
-  ftClock.textContent = (d > 0 ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
 }
 tickFlashTimer();
 setInterval(tickFlashTimer,500);
