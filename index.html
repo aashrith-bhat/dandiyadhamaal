@@ -255,7 +255,12 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .tl-item p{color:rgba(255,248,238,.65);font-size:15px;font-weight:300;line-height:1.65;max-width:520px}
 
 .tickets{padding:110px 0}
-.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  @media(min-width:961px){
+    .tk-grid .tk-card:nth-child(1){order:2}
+    .tk-grid .tk-card:nth-child(2){order:1}
+    .tk-grid .tk-card:nth-child(3){order:3}
+  }
 .tk-card{
   background:var(--glass);border:1px solid var(--line);border-radius:26px;
   padding:40px 32px;display:flex;flex-direction:column;position:relative;transition:.35s;
