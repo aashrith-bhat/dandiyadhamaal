@@ -317,6 +317,7 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .slab-proof{margin-top:auto;margin-bottom:14px;padding:10px 14px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:13px;font-weight:600;text-align:center}
 .social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 20px;padding:12px 18px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:14px;font-weight:600}
 .social-proof[hidden]{display:none}
+.locked-form .book-grid,.locked-form .pay-box,.locked-form .file-drop,.locked-form #shotPreview,.locked-form #submitBtn{display:none !important}
 .tk-card .slab-proof{margin-top:auto}
 .book{padding:30px 0 60px}
 .book-card{
@@ -686,7 +687,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       <h2>Slab 1 is <span class="grad-text">live</span></h2>
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
-    <form id="bookForm" class="book-card reveal" style="--d:.1s" novalidate>
+    <form id="bookForm" class="book-card reveal locked-form" style="--d:.1s" novalidate>
       <div class="flash-timer" id="flashTimer">
         <span class="ft-label">Slab 1 opens in</span>
         <span class="ft-clock" id="ftClock">--:--</span>
@@ -1142,6 +1143,7 @@ let unlockFired = false;
 function tickFlashTimer(){
   const t = document.getElementById('flashTimer');
   if(!flashIsLocked()){
+    form.classList.remove('locked-form');
     const sinceOpen = Date.now() - FLASH_OPEN_AT;
     if(sinceOpen < 60000 && !unlockFired){
       unlockFired = true;
