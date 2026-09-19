@@ -439,7 +439,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
 
 @media(max-width:960px){
   .about-grid{grid-template-columns:1fr;gap:44px}
-  .hl-grid,.tk-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+  .hl-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}
+  .tk-grid{grid-template-columns:repeat(3,1fr);gap:8px}
   .mandala{display:none}
 }
 @media(max-width:760px){
@@ -453,6 +454,19 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
   .nav-links a{font-size:22px;font-family:'Yatra One'}
   .f-grid{grid-template-columns:1fr;gap:36px}
   .cd-box{min-width:76px}
+  .tk-card{padding:12px 9px}
+  .tk-card h3{font-size:13px}
+  .tk-price{font-size:21px;margin:10px 0 4px}
+  .tk-price .was{font-size:12px;margin-right:4px}
+  .tk-price small{font-size:10px}
+  .tk-note{font-size:8.5px;letter-spacing:.06em}
+  .tk-feats{gap:6px;margin-bottom:12px}
+  .tk-feats li{font-size:9.5px;line-height:1.35}
+  .tk-feats svg{width:10px;height:10px}
+  .tk-soon span{font-size:12px;padding:6px 10px}
+  .tk-soon.sold .sold-stamp{font-size:13px;padding:4px 10px;border-width:2px}
+  .tk-soon.sold .sold-sub{font-size:8px;letter-spacing:.12em;margin-top:8px}
+  .tk-card .btn{font-size:11px;padding:8px 10px}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
