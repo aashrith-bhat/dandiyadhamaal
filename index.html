@@ -361,6 +361,20 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .closed-banner b{font-family:'Yatra One';font-size:22px;color:var(--cranberry);display:block;margin-bottom:6px}
 .closed-banner span{font-size:14.5px;font-weight:300;color:rgba(255,248,238,.75)}
 .locked-note{margin:0 0 20px;padding:14px 18px;border-radius:12px;background:rgba(255,198,26,.09);border:1px solid rgba(255,198,26,.4);color:var(--yellow);font-size:14px;font-weight:600;text-align:center}
+.checksec{padding:20px 0 40px}
+.check-card{max-width:560px;margin:0 auto;background:var(--glass);border:1px solid var(--line);border-radius:22px;padding:30px 28px;text-align:center}
+.check-card label{display:block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.65);margin-bottom:12px}
+.check-card input{width:100%;background:rgba(255,248,238,.06);border:1px solid var(--line);border-radius:12px;padding:13px 16px;color:var(--cream);font-family:'Outfit';font-size:15px;text-align:center;outline:none;transition:.25s}
+.check-card input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,122,0,.15)}
+#chkBtn{margin-top:14px;width:100%;justify-content:center}
+#chkMsg{display:none;margin-top:16px;padding:14px 16px;border-radius:12px;font-size:14.5px;line-height:1.6}
+#chkMsg.ok{display:block;background:rgba(57,211,83,.12);border:1px solid rgba(57,211,83,.45);color:#8affb0}
+#chkMsg.warn{display:block;background:rgba(255,198,26,.1);border:1px solid rgba(255,198,26,.45);color:var(--yellow)}
+.ig-bar{position:relative;margin-top:70px;background:linear-gradient(90deg,#c1124a,#ff7a00);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
+.ig-bar span{font-size:13.5px;font-weight:600}
+.ig-bar button{cursor:pointer;border:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:12.5px;font-family:'Outfit'}
+#igOpen{background:#fff8ee;color:#c1124a}
+#igX{background:none;color:#fff;font-size:15px;padding:2px 6px}
 .pay-steps{flex:1;min-width:220px;display:flex;flex-direction:column;gap:9px;font-weight:300;font-size:15px;color:rgba(255,248,238,.85)}
 .pay-amt{font-family:'Yatra One';font-size:30px;color:var(--yellow)}
 .vpa b{color:var(--yellow);font-weight:600;word-break:break-all}
@@ -784,6 +798,22 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
   </div>
 </section>
 
+<section class="checksec" id="check">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Check Your Registration</span>
+      <h2>Already submitted? <span class="grad-text">Check here</span></h2>
+    </div>
+    <div class="check-card reveal" style="--d:.1s">
+      <label>WhatsApp Number
+        <input id="chkPhone" inputmode="tel" placeholder="10-digit mobile number">
+      </label>
+      <button type="button" class="btn btn-grad" id="chkBtn">Check my registration</button>
+      <div id="chkMsg"></div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="wrap">
     <div class="cta-inner reveal">
@@ -1199,6 +1229,29 @@ function loadBadge(){
 }
 updatePay();
 loadBadge();
+}
+
+document.getElementById('chkBtn').addEventListener('click', function(){
+  const msg = document.getElementById('chkMsg');
+  msg.className = ''; msg.style.display = 'block';
+  const phone = document.getElementById('chkPhone').value.replace(/\D/g,'');
+  if (phone.length < 10) { msg.className = 'warn'; msg.textContent = 'Please enter a 10-digit mobile number.'; return; }
+  const btn = this;
+  btn.disabled = true; btn.textContent = 'Checking…';
+  fetchWithTimeout(ENDPOINT + '?action=check&phone=' + phone, {method:'GET'}, 20000)
+    .then(r=>r.json())
+    .then(d=>{
+      if (d && d.found) {
+        msg.className = 'ok';
+        msg.innerHTML = '<b>Yes — you have been registered.</b> ' + d.tickets + ' ticket' + (d.tickets === 1 ? '' : 's') + ' confirmed under this number. Your ticket will arrive on your email.';
+      } else {
+        msg.className = 'warn';
+        msg.innerHTML = 'We could not find this number yet. If you just registered, please wait a minute and try again — or contact us on the numbers at the bottom of this page.';
+      }
+    })
+    .catch(()=>{ msg.className = 'warn'; msg.textContent = 'Network hiccup — please try again in a moment.'; })
+    .finally(()=>{ btn.disabled = false; btn.textContent = 'Check my registration'; });
+});
 
 const tkGridEl = document.getElementById('tkGrid');
 let tkIndex = 0;
@@ -1219,6 +1272,30 @@ tkGridEl.addEventListener('scroll',()=>{
     if(step > 0) tkIndex = Math.max(0, Math.min(cards.length - 1, Math.round(tkGridEl.scrollLeft / step)));
   },100);
 });
+
+(function(){
+  const ua = navigator.userAgent || '';
+  if (!/Instagram/i.test(ua)) return;
+  if (sessionStorage.getItem('igHintClosed')) return;
+  const bar = document.createElement('div');
+  bar.className = 'ig-bar';
+  const host = location.host + location.pathname + (location.search || '');
+  bar.innerHTML = '<span>For smooth payments, open this page in your phone browser</span>' +
+    '<button type="button" id="igOpen">Open in browser</button>' +
+    '<button type="button" id="igX" aria-label="Close">✕</button>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  document.getElementById('igOpen').addEventListener('click', function(){
+    if (/Android/i.test(ua)) {
+      location.href = 'intent://' + host + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(location.href) + ';end';
+    } else {
+      location.href = 'googlechrome://' + (location.host + location.pathname + (location.search || ''));
+    }
+  });
+  document.getElementById('igX').addEventListener('click', function(){
+    try { sessionStorage.setItem('igHintClosed','1'); } catch(e){}
+    bar.style.display = 'none';
+  });
+})();
 
 document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mousemove',e=>{
