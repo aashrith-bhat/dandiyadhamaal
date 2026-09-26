@@ -702,10 +702,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <div class="tk-soon sold"><div class="soon-stack"><span class="sold-stamp">Sold Out</span><span class="sold-sub">Flash Sale has ended</span></div></div>
       </div>
 
-      <div class="tk-card soon tilt reveal" style="--d:.24s">
-        <h3>Ras Regular</h3>
-        <div class="tk-price"><span class="was">₹599</span> <small>₹</small> 499<small> /person</small></div>
-        <div class="tk-note">Slab 2 · coming soon</div>
+      <div class="tk-card hot tilt reveal" style="--d:.24s">
+        <span class="tk-flag">Live Now</span>
+        <h3>Interactors Slab</h3>
+        <div class="tk-price"><small>₹</small> 499<small> /person</small></div>
+        <div class="tk-note">Slab 2 · selling now</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
@@ -713,7 +714,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
-        <div class="tk-soon"><div class="soon-stack"><i>Slab 2</i><span>Coming Soon</span></div></div>
+        <a class="btn btn-grad" href="#book" data-tier="Interactors Slab">Get Pass</a>
       </div>
     </div>
     <div class="tk-nav">
@@ -748,7 +749,14 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <label>Pass
           <select name="tier" id="tierSelect">
             <option value="Slab 1">Slab 1 — ₹399</option>
+            <option value="Interactors Slab">Interactors Slab — ₹499</option>
           </select>
+        </label>
+        <label id="classLabel" style="display:none">Class
+          <input name="class" id="fClass" placeholder="e.g. 11th, 12th, College">
+        </label>
+        <label id="clubLabel" style="display:none">Interact Club
+          <input name="club" id="fClub" placeholder="Your Interact Club name">
         </label>
         <label>Tickets
           <select name="tickets" id="qtySel"></select>
@@ -774,11 +782,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       </div>
 
       <div class="file-drop" id="fileDrop">
-        <b>Step 3 — Upload payment screenshot</b><br>
+        <b id="fileLabel">Upload payment screenshot</b><br>
         Click or drop the screenshot here (JPG / PNG)
         <input type="file" id="shot" accept="image/*" hidden>
       </div>
+      <div class="file-drop" id="idDrop" style="display:none">
+        <b>Upload Interact Club ID card photo</b><br>
+        Click or drop the ID card photo here (JPG / PNG)
+        <input type="file" id="idCard" accept="image/*" hidden>
+      </div>
       <div id="shotPreview"><img id="shotThumb" alt=""><span class="ok" id="shotName"></span></div>
+      <div id="idPreview" style="display:none;margin-top:14px;align-items:center;gap:14px;font-size:13.5px;color:rgba(255,248,238,.7)"><img id="idThumb" alt="" style="height:76px;border-radius:10px;border:1px solid var(--line)"><span class="ok" id="idName"></span></div>
       </div>
 
       <button type="submit" class="btn btn-grad" id="submitBtn">Submit Registration</button>
@@ -1063,8 +1077,7 @@ function burst(x,y,n=130){
 
 
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxKdf693TMbYY7ii4tYcExQMt7HS6geX4GVTCUI3_smDbmtEyiUUXg27FZlKBVzc_G6tg/exec';
-const PRICE_PER_PASS = 399;
-const VPA = '334729431979268@cnrb';
+const PRICES = {'Slab 1': 399, 'Interactors Slab': 499};
 const form = document.getElementById('bookForm');
 const fName = document.getElementById('fName');
 const fEmail = document.getElementById('fEmail');
@@ -1080,7 +1093,7 @@ const fileDrop = document.getElementById('fileDrop');
 const shot = document.getElementById('shot');
 const submitBtn = document.getElementById('submitBtn');
 const formBody = document.getElementById('formBody');
-let shotData = null;
+let shotData = null, idData = null;
 const FLASH_LOCKED = true;
 // Slab 1 opens automatically at 10:49 AM IST, 19 Sep 2026. The
 // absolute timestamp means no midnight reset - once it fires,
@@ -1091,11 +1104,11 @@ function flashIsLocked(){return FLASH_LOCKED && Date.now() < FLASH_OPEN_AT;}
 for (let n = 1; n <= 10; n++) {
   const o = document.createElement('option');
   o.value = n;
-  o.textContent = n + (n === 1 ? ' ticket' : ' tickets') + ' — ₹' + (PRICE_PER_PASS * n);
+  o.textContent = n + (n === 1 ? ' ticket' : ' tickets') + ' — ₹' + (PRICES[tierSel.value] * n);
   qtySel.appendChild(o);
 }
 
-function totalAmt(){return PRICE_PER_PASS * parseInt(qtySel.value, 10);}
+function totalAmt(){return PRICES[tierSel.value] * parseInt(qtySel.value, 10);}
 function updateQr(){
   const upi = 'upi://pay?pa=' + VPA + '&pn=Rotaract%20Bangalore%20West&am=' + totalAmt() + '&cu=INR';
   upiQr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=0&ecc=M&data=' + encodeURIComponent(upi);
@@ -1103,7 +1116,7 @@ function updateQr(){
 function updatePay(){
   const n = parseInt(qtySel.value, 10);
   payAmt.textContent = '₹' + totalAmt();
-  qtySummary.textContent = n + (n === 1 ? ' pass' : ' passes') + ' × ₹' + PRICE_PER_PASS;
+  qtySummary.textContent = n + (n === 1 ? ' pass' : ' passes') + ' × ₹' + PRICES[tierSel.value];
   updateQr();
 }
 qtySel.addEventListener('change', updatePay);
