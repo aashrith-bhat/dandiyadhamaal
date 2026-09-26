@@ -706,12 +706,13 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
         <span class="tk-flag">Live Now</span>
         <h3>Interactors Slab</h3>
         <div class="tk-price"><small>₹</small> 249<small> /person</small></div>
-        <div class="tk-note">Slab 2 · selling now</div>
+        <div class="tk-note">Interactors Slab · selling now</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Garba workshop access</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Standing circle zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Reserved circle front zone</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Welcome kit &amp; glow accessories</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
         <a class="btn btn-grad" href="#book" data-tier="Interactors Slab">Get Pass</a>
@@ -1120,6 +1121,7 @@ for (let n = 1; n <= 10; n++) {
 }
 
 function totalAmt(){return PRICES[tierSel.value] * parseInt(qtySel.value, 10);}
+const VPA = vpaEl.textContent.trim();
 function updateQr(){
   try{
     const upi = 'upi://pay?pa=' + VPA + '&pn=Rotaract%20Bangalore%20West&am=' + totalAmt() + '&cu=INR';
