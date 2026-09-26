@@ -1125,6 +1125,11 @@ document.querySelectorAll('[data-tier]').forEach(el => el.addEventListener('clic
   tierSel.value = el.dataset.tier;
   updatePay();
 }));
+tierSel.addEventListener('change', function(){
+  const isInter = tierSel.value === 'Interactors Slab';
+  document.getElementById('classLabel').style.display = isInter ? '' : 'none';
+  document.getElementById('clubLabel').style.display = isInter ? '' : 'none';
+});
 
 upiQr.addEventListener('error', () => {
   upiQr.style.display = 'none';
