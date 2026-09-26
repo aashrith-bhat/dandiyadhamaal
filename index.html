@@ -1148,6 +1148,12 @@ function updateTierUI(){
   const isInter = tierSel.value === 'Interactors Slab';
   document.getElementById('classLabel').style.display = isInter ? '' : 'none';
   document.getElementById('clubLabel').style.display = isInter ? '' : 'none';
+  document.getElementById('idDrop').style.display = isInter ? '' : 'none';
+  if (!isInter){
+    idData = null;
+    document.getElementById('idPreview').style.display = 'none';
+    document.getElementById('idCard').value = '';
+  }
   const heading = document.getElementById('bookHeading');
   if (heading) heading.innerHTML = isInter
     ? 'Interactors Slab is <span class="grad-text">live</span>'
@@ -1196,6 +1202,33 @@ function handleShot(file){
   img.src = url;
 }
 
+const idDrop = document.getElementById('idDrop');
+const idInput = document.getElementById('idCard');
+idDrop.addEventListener('click', () => idInput.click());
+['dragover','dragenter'].forEach(ev => idDrop.addEventListener(ev, e => {e.preventDefault();idDrop.classList.add('over');}));
+['dragleave','drop'].forEach(ev => idDrop.addEventListener(ev, e => {e.preventDefault();idDrop.classList.remove('over');}));
+idDrop.addEventListener('drop', e => {const f = e.dataTransfer.files[0];if (f)handleIdCard(f);});
+idInput.addEventListener('change', () => {if (idInput.files[0])handleIdCard(idInput.files[0]);});
+
+function handleIdCard(file){
+  if (!file.type.startsWith('image/')){showErr('Please upload the ID card as an image file (JPG or PNG).');return;}
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    const max = 1400, k = Math.min(1, max/Math.max(img.width,img.height));
+    const c = document.createElement('canvas');
+    c.width = Math.round(img.width*k);c.height = Math.round(img.height*k);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    const dataUrl = c.toDataURL('image/jpeg',.82);
+    idData = dataUrl.split(',')[1];
+    document.getElementById('idThumb').src = dataUrl;
+    document.getElementById('idName').textContent = file.name;
+    document.getElementById('idPreview').style.display = 'flex';
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+}
+
 function showErr(m){formMsg.className = 'err';formMsg.style.display = 'block';formMsg.textContent = m;}
 
 function fetchWithTimeout(url,opts,ms){
@@ -1222,10 +1255,11 @@ form.addEventListener('submit',e=>{
   const qty = parseInt(qtySel.value,10);
   if(!name || !email.includes('@') || phone.length < 10){showErr('Please fill your name, a valid email and a 10-digit phone number.');return;}
   if(!shotData){showErr('Please upload your payment screenshot first.');return;}
+  if(tierSel.value === 'Interactors Slab' && !idData){showErr('For the Interactors Slab, please upload a photo of your Interact / College ID card.');return;}
   submitBtn.disabled = true;submitBtn.textContent = 'Submitting…';
   const clsEl = document.getElementById('fClass');
   const clubEl = document.getElementById('fClub');
-  const payload = JSON.stringify({name,email,phone,tier:tierSel.value,tickets:qty,amount:totalAmt(),image:shotData,cls:(clsEl&&clsEl.value||'').trim(),club:(clubEl&&clubEl.value||'').trim()});
+  const payload = JSON.stringify({name,email,phone,tier:tierSel.value,tickets:qty,amount:totalAmt(),image:shotData,idcard:idData || '',cls:(clsEl&&clsEl.value||'').trim(),club:(clubEl&&clubEl.value||'').trim()});
   fetchWithTimeout(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload},60000)
     .then(()=>{finishSubmit(false);})
     .catch(()=>{finishSubmit(true);});
@@ -1233,8 +1267,11 @@ form.addEventListener('submit',e=>{
 
 function finishSubmit(timedOut){
   submitBtn.disabled = false;submitBtn.textContent = 'Submit Registration';
-  form.reset();shotData = null;
+  form.reset();shotData = null;idData = null;
   document.getElementById('shotPreview').style.display = 'none';
+  document.getElementById('idPreview').style.display = 'none';
+  document.getElementById('idCard').value = '';
+  updateTierUI();
   updatePay();
   formMsg.className = 'ok';formMsg.style.display = 'block';
   formMsg.innerHTML = timedOut
