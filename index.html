@@ -729,11 +729,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
   <div class="wrap">
     <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
       <span class="eyebrow" style="justify-content:center">Book Your Pass</span>
-      <h2>Slab 1 is <span class="grad-text">live</span></h2>
+      <h2 id="bookHeading">Slab 1 is <span class="grad-text">live</span></h2>
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal locked-form" style="--d:.1s" novalidate>
-      <div class="locked-note" id="lockedNote">Slab 1 bookings open at 10:49 AM today — this form unlocks automatically. No payment needed right now.</div>
+      <div class="locked-note" id="lockedNote" style="display:none">Slab 1 bookings are locked right now — this form unlocks automatically. No payment needed right now.</div>
       <div class="social-proof" id="socialProof" hidden></div>
       <div id="formBody">
       <div class="book-grid">
@@ -1125,6 +1125,15 @@ document.querySelectorAll('[data-tier]').forEach(el => el.addEventListener('clic
   tierSel.value = el.dataset.tier;
   updatePay();
 }));
+tierSel.addEventListener('change', function(){
+  const isInter = tierSel.value === 'Interactors Slab';
+  document.getElementById('classLabel').style.display = isInter ? '' : 'none';
+  document.getElementById('clubLabel').style.display = isInter ? '' : 'none';
+  const heading = document.getElementById('bookHeading');
+  if (heading) heading.innerHTML = isInter
+    ? 'Interactors Slab is <span class="grad-text">live</span>'
+    : 'Slab 1 is <span class="grad-text">live</span>';
+});
 tierSel.addEventListener('change', function(){
   const isInter = tierSel.value === 'Interactors Slab';
   document.getElementById('classLabel').style.display = isInter ? '' : 'none';
