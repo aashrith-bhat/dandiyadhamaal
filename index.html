@@ -1275,8 +1275,8 @@ function finishSubmit(timedOut){
   updatePay();
   formMsg.className = 'ok';formMsg.style.display = 'block';
   formMsg.innerHTML = timedOut
-    ? '<b>On its way!</b> The network was slow, but your registration should have reached us. Our team verifies every payment against the club account and sends your passes on WhatsApp within 24 hours. <b>Please do not pay again</b> — paid twice by mistake? Ping the Chair, we refund duplicates.'
-    : '<b>Submitted!</b> Our team will verify your payment and WhatsApp your passes within 24 hours. No message by then? Ping the Chair on WhatsApp below.';
+    ? '<b>On its way!</b> The network was slow, but your registration should have reached us. Our team verifies every payment against the club account and Emails your passes within 24 hours. <b>Please do not pay again</b> — paid twice by mistake? Ping the Chair, we refund duplicates.'
+    : '<b>Submitted!</b> Our team will verify your payment and Email your passes within 24 hours. No updates by then? Ping the Chair on WhatsApp below.';
   burst(innerWidth/2,innerHeight/3);
   loadBadge();
 }
