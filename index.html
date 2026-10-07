@@ -412,6 +412,9 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
 .faq-item.open .pm{transform:rotate(45deg);background:var(--grad);color:var(--ink);border-color:transparent}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .faq-a p{padding:0 26px 24px;color:rgba(255,248,238,.65);font-weight:300;line-height:1.7;font-size:15px}
+.faq-item.hot{border-color:rgba(255,198,26,.7);background:rgba(255,198,26,.08);box-shadow:0 0 28px rgba(255,122,0,.18)}
+.faq-item.hot .faq-q{color:var(--yellow);font-weight:600}
+.faq-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:var(--grad);color:var(--ink);padding:3px 10px;border-radius:999px;margin-right:10px;white-space:nowrap}
 
 .cta-band{padding:0 0 120px}
 .cta-inner{
@@ -951,6 +954,7 @@ document.getElementById('timeline').innerHTML = schedule.map((s,i)=>`
   </div>`).join('');
 
 const faqs = [
+  ['Not received your ticket yet?', 'If you have not received your ticket yet, enter your number in the <a href="#check" style="color:var(--yellow);text-decoration:underline">Check my registration</a> box on this page and see if it is registered in our database. If it is not there, message us on the WhatsApp number below and we will make sure that it gets done properly.', true],
   ['Do I need to bring my own dandiyas?','You can, but every pass includes a pair of decorated dandiyas at the welcome gate.'],
   ['I have never danced Garba. Can I still come?','Absolutely. Intro teaching circles early in the evening are built for first-timers, and our mentors keep a beginners circle going all night. Nobody sits out.'],
   ['Is there a dress code?','Traditional festive wear is encouraged — ghagra-choli, kediyu, kurta or anything with mirror work. Best Dressed prizes depend on it.'],
@@ -958,8 +962,8 @@ const faqs = [
   ['What about parking and transport?','Yes — parking is available at the venue.']
 ];
 document.getElementById('faqList').innerHTML = faqs.map(f=>`
-  <div class="faq-item reveal">
-    <button class="faq-q">${f[0]}<span class="pm">+</span></button>
+  <div class="faq-item reveal${f[2] ? ' hot' : ''}">
+    <button class="faq-q">${f[2] ? '<span class="faq-tag">Important</span>' : ''}${f[0]}<span class="pm">+</span></button>
     <div class="faq-a"><p>${f[1]}</p></div>
   </div>`).join('');
 
