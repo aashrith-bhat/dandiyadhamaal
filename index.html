@@ -1188,11 +1188,11 @@ function handleShot(file){
   const url = URL.createObjectURL(file);
   const img = new Image();
   img.onload = () => {
-    const max = 1400, k = Math.min(1, max/Math.max(img.width,img.height));
+    const max = 1100, k = Math.min(1, max/Math.max(img.width,img.height));
     const c = document.createElement('canvas');
     c.width = Math.round(img.width*k);c.height = Math.round(img.height*k);
     c.getContext('2d').drawImage(img,0,0,c.width,c.height);
-    const dataUrl = c.toDataURL('image/jpeg',.82);
+    const dataUrl = c.toDataURL('image/jpeg',.75);
     shotData = dataUrl.split(',')[1];
     document.getElementById('shotThumb').src = dataUrl;
     document.getElementById('shotName').textContent = file.name;
@@ -1260,7 +1260,7 @@ form.addEventListener('submit',e=>{
   const clsEl = document.getElementById('fClass');
   const clubEl = document.getElementById('fClub');
   const payload = JSON.stringify({name,email,phone,tier:tierSel.value,tickets:qty,amount:totalAmt(),image:shotData,idcard:idData || '',cls:(clsEl&&clsEl.value||'').trim(),club:(clubEl&&clubEl.value||'').trim()});
-  fetchWithTimeout(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload},60000)
+  fetchWithTimeout(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload},90000)
     .then(()=>{finishSubmit(false);})
     .catch(()=>{finishSubmit(true);});
 });
@@ -1275,8 +1275,8 @@ function finishSubmit(timedOut){
   updatePay();
   formMsg.className = 'ok';formMsg.style.display = 'block';
   formMsg.innerHTML = timedOut
-    ? '<b>On its way!</b> The network was slow, but your registration should have reached us. Our team verifies every payment against the club account and Emails your passes within 24 hours. <b>Please do not pay again</b> — paid twice by mistake? Ping the Chair, we refund duplicates.'
-    : '<b>Submitted!</b> Our team will verify your payment and Email your passes within 24 hours. No updates by then? Ping the Chair on WhatsApp below.';
+    ? '<b>The network was slow.</b> Your upload may not have gone through. <b>Please do not pay again.</b> In a few minutes, use <b>Check my registration</b> below — if your number is not found, please submit again with the same screenshot.'
+    : '<b>Submitted!</b> Our team will verify your payment and Email your passes within 24 hours. No updates by then? Ping the Chair on WhatsApp below. <b>Tip:</b> use <b>Check my registration</b> below to confirm your booking reached us.';
   burst(innerWidth/2,innerHeight/3);
   loadBadge();
 }
