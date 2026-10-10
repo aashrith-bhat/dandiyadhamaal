@@ -992,7 +992,7 @@ const cio = new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.6});
 counters.forEach(c=>cio.observe(c));
 
-const target = new Date('2026-10-11T17:00:00');
+const target = new Date('2026-10-11T17:00:00+05:30');
 const cd = {d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
 const pad = n=>String(n).padStart(2,'0');
 function tick(){
