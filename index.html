@@ -687,7 +687,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
-        <div class="slab-proof" id="slab1Proof" hidden></div>
         <a class="btn btn-grad" href="#book" data-tier="Slab 1">On-Spot at Venue</a>
       </div>
       <div class="tk-card soon tilt reveal" style="--d:.12s">
@@ -738,7 +737,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal locked-form" style="--d:.1s" novalidate>
       <div class="locked-note" id="lockedNote" style="display:none">Online registrations are closed. Want to join the dandiya night? On-spot registrations are available at the venue — see you there!</div>
-      <div class="social-proof" id="socialProof" hidden></div>
       <div id="formBody">
       <div class="book-grid">
         <label>Name
@@ -1281,7 +1279,6 @@ function finishSubmit(timedOut){
     ? '<b>The network was slow.</b> Your upload may not have gone through. <b>Please do not pay again.</b> In a few minutes, use <b>Check my registration</b> below — if your number is not found, please submit again with the same screenshot.'
     : '<b>Submitted!</b> Our team will verify your payment and Email your passes within 24 hours. No updates by then? Ping the Chair on WhatsApp below. <b>Tip:</b> use <b>Check my registration</b> below to confirm your booking reached us.';
   burst(innerWidth/2,innerHeight/3);
-  loadBadge();
 }
 
 function tickFlashTimer(){
@@ -1300,24 +1297,7 @@ function tickFlashTimer(){
 tickFlashTimer();
 setInterval(tickFlashTimer,500);
 
-function loadBadge(){
-  if(!ENDPOINT)return;
-  const sep = ENDPOINT.includes('?') ? '&' : '?';
-  fetchWithTimeout(ENDPOINT + sep + 'action=slab1',{method:'GET'},20000)
-    .then(r=>r.json())
-    .then(d=>{
-      if(!d || !d.show)return;
-      const badge = document.getElementById('socialProof');
-      badge.textContent = d.today + (d.today === 1 ? ' ticket' : ' tickets') + ' grabbed today — join them!';
-      badge.hidden = false;
-      const card = document.getElementById('slab1Proof');
-      card.textContent = d.today + ' grabbed today';
-      card.hidden = false;
-    })
-    .catch(()=>{});
-}
 updatePay();
-loadBadge();
 
 document.getElementById('chkBtn').addEventListener('click', function(){
   const msg = document.getElementById('chkMsg');
