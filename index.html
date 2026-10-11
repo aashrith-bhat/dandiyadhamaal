@@ -304,6 +304,15 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
   background:none;border:none;padding:0;transform:none;
   -webkit-text-fill-color:rgba(255,248,238,.8);
 }
+.sold-stamp{display:inline-block}
+.closed-row{margin:4px 0 20px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.closed-stamp{
+  display:inline-block;font-family:'Yatra One';font-size:clamp(24px,3vw,34px);letter-spacing:.05em;
+  color:#ff5c5c;-webkit-text-fill-color:#ff5c5c;text-transform:uppercase;transform:rotate(-6deg);
+  border:3px solid rgba(255,92,92,.75);border-radius:12px;padding:6px 26px;
+  background:rgba(229,43,43,.12);text-shadow:0 0 20px rgba(229,43,43,.45);
+}
+.closed-sub{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:rgba(255,248,238,.75)}
 .sale-over{
   max-width:780px;margin:0 auto 30px;padding:22px 28px;border-radius:18px;text-align:center;
   background:linear-gradient(120deg,rgba(229,43,43,.16),rgba(193,18,74,.18));
@@ -687,6 +696,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
+        <div class="closed-row"><span class="closed-stamp">Closed</span><span class="closed-sub">On-spot available at the venue</span></div>
         <a class="btn btn-grad" href="#book" data-tier="Slab 1">On-Spot at Venue</a>
       </div>
       <div class="tk-card soon tilt reveal" style="--d:.12s">
@@ -717,6 +727,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
+        <div class="closed-row"><span class="closed-stamp">Closed</span><span class="closed-sub">On-spot available at the venue</span></div>
         <a class="btn btn-grad" href="#book" data-tier="Interactors Slab">On-Spot at Venue</a>
       </div>
     </div>
