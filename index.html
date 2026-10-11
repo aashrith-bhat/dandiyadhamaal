@@ -675,10 +675,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     <div class="tk-grid" id="tkGrid">
 
       <div class="tk-card hot tilt reveal" style="--d:0s">
-        <span class="tk-flag">Live Now</span>
-        <h3>Slab 1</h3>
+      <span class="tk-flag">Registrations Closed</span>
+      <h3>Slab 1</h3>
         <div class="tk-price"><span class="was">₹499</span> <small>₹</small> 399<small> /person</small></div>
-        <div class="tk-note">Slab 1 · selling now</div>
+        <div class="tk-note">On-spot passes at the venue</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
@@ -688,7 +688,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
         <div class="slab-proof" id="slab1Proof" hidden></div>
-        <a class="btn btn-grad" href="#book" data-tier="Slab 1">Get Pass</a>
+        <a class="btn btn-grad" href="#book" data-tier="Slab 1">On-Spot at Venue</a>
       </div>
       <div class="tk-card soon tilt reveal" style="--d:.12s">
         <h3>Flash Sale</h3>
@@ -706,10 +706,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       </div>
 
       <div class="tk-card hot tilt reveal" style="--d:.24s">
-        <span class="tk-flag">Live Now</span>
-        <h3>Interactors Slab</h3>
+      <span class="tk-flag">Registrations Closed</span>
+      <h3>Interactors Slab</h3>
         <div class="tk-price"><span class="was">₹399</span> <small>₹</small> 249<small> /person</small></div>
-        <div class="tk-note">Interactors Slab · selling now</div>
+        <div class="tk-note">On-spot passes at the venue</div>
         <ul class="tk-feats">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full-night entry</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Pair of decorated dandiyas</li>
@@ -718,7 +718,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Photobooth access included</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Dinner included</li>
         </ul>
-        <a class="btn btn-grad" href="#book" data-tier="Interactors Slab">Get Pass</a>
+        <a class="btn btn-grad" href="#book" data-tier="Interactors Slab">On-Spot at Venue</a>
       </div>
     </div>
     <div class="tk-nav">
@@ -737,7 +737,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
     </div>
     <!-- REPLACE_APPS_SCRIPT_URL : paste your deployed Apps Script Web App URL below (const ENDPOINT in the script) -->
     <form id="bookForm" class="book-card reveal locked-form" style="--d:.1s" novalidate>
-      <div class="locked-note" id="lockedNote" style="display:none">Slab 1 bookings are locked right now — this form unlocks automatically. No payment needed right now.</div>
+      <div class="locked-note" id="lockedNote" style="display:none">Online registrations are closed. Want to join the dandiya night? On-spot registrations are available at the venue — see you there!</div>
       <div class="social-proof" id="socialProof" hidden></div>
       <div id="formBody">
       <div class="book-grid">
@@ -1111,10 +1111,9 @@ const submitBtn = document.getElementById('submitBtn');
 const formBody = document.getElementById('formBody');
 let shotData = null, idData = null;
 const FLASH_LOCKED = true;
-// Slab 1 opens automatically at 10:49 AM IST, 19 Sep 2026. The
-// absolute timestamp means no midnight reset - once it fires,
-// Slab 1 stays unlocked permanently.
-const FLASH_OPEN_AT = 1789775340000;
+// Registrations are closed for good — the far-future date keeps the
+// form locked permanently. On-spot registration handles the rest.
+const FLASH_OPEN_AT = new Date('2030-01-01T00:00:00+05:30').getTime();
 function flashIsLocked(){return FLASH_LOCKED && Date.now() < FLASH_OPEN_AT;}
 
 for (let n = 1; n <= 10; n++) {
@@ -1250,7 +1249,7 @@ form.addEventListener('submit',e=>{
   formMsg.className = '';formMsg.style.display = 'none';
   if(flashIsLocked()){
     formMsg.className = 'warn';formMsg.style.display = 'block';
-    formMsg.textContent = 'Slab 1 sales are locked right now. Please wait for them to open — the countdown above shows exactly when.';
+    formMsg.textContent = 'Online registrations are closed. On-spot registrations are available at the venue — see you there!';
     return;
   }
   const name = fName.value.trim();
