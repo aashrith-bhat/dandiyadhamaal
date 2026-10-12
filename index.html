@@ -278,13 +278,24 @@ a.meta-chip:hover{border-color:var(--yellow);color:var(--yellow);transform:trans
   background:none;border:none;padding:0;transform:none;
   -webkit-text-fill-color:rgba(255,248,238,.8);
 }
-.sale-over{
-  max-width:780px;margin:0 auto 30px;padding:22px 28px;border-radius:18px;text-align:center;
-  background:linear-gradient(120deg,rgba(229,43,43,.16),rgba(193,18,74,.18));
-  border:1px solid rgba(229,43,43,.5);
+.event-over{
+  max-width:720px;margin:56px auto 0;padding:36px 30px;border-radius:26px;text-align:center;
+  background:linear-gradient(140deg,rgba(255,122,0,.16),rgba(193,18,74,.17),rgba(255,198,26,.15));
+  border:1px solid rgba(255,198,26,.55);
+  box-shadow:0 0 46px rgba(255,122,0,.22);
 }
-.sale-over b{font-family:'Yatra One';font-size:clamp(20px,2.6vw,28px);display:block;margin-bottom:8px;color:#ff8f8f}
-.sale-over span{font-size:14.5px;font-weight:300;color:rgba(255,248,238,.8);line-height:1.65;display:block}
+.event-over b{
+  font-family:'Yatra One';font-size:clamp(28px,4.2vw,42px);display:block;margin:10px 0 14px;
+  background-image:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;letter-spacing:.01em;
+  filter:drop-shadow(0 0 18px rgba(255,122,0,.35));
+}
+.event-over span{font-size:15.5px;font-weight:300;color:rgba(255,248,238,.88);line-height:1.75;display:block}
+.event-over .eo-star{
+  color:var(--yellow);font-size:22px;display:block;margin:2px 0;
+  text-shadow:0 0 16px rgba(255,198,26,.9);animation:eoTwinkle 2.4s ease-in-out infinite;
+}
+@keyframes eoTwinkle{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
 .tk-soon span{
   font-family:'Yatra One';font-size:clamp(20px,2.4vw,27px);letter-spacing:.05em;transform:rotate(-5deg);
   background-image:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
@@ -531,13 +542,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 34px;position:relative;z-
       </a>
     </div>
 
-    <div class="hero-cta">
-      <a href="#about" class="btn btn-ghost">Discover the Night</a>
-    </div>
-
-    <div class="sale-over reveal" style="--d:.3s">
+    <div class="event-over reveal" style="--d:.3s">
+      <span class="eo-star">✦</span>
       <b>The event has ended</b>
-      <span>Thank you for an unforgettable night of Garba, Raas and dhol! The photo gallery will go live shortly — stay tuned on our Instagram.</span>
+      <span>Thank you for an unforgettable night of Garba, Raas and dhol!</span>
+      <span>The photo gallery will go live shortly — stay tuned on our Instagram.</span>
+      <span class="eo-star">✦</span>
     </div>
   </div>
 </section>
